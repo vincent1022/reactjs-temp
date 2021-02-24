@@ -1,0 +1,10 @@
+.list {
+  color: red;
+  :global {
+    .item {
+      font-weight: 900;
+      font-style: italic;
+    }
+  }
+}
+
