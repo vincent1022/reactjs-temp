@@ -1,11 +1,9 @@
-import React  from 'react'
-import TodoList from './pages/todoList'
+import React from 'react'
 import Routes from './pages/routes'
 
-function App() {
+function App () {
 	return (
-		<div className="App">
-			<TodoList />
+		<div className='App'>
 			<Routes />
 		</div>
 	)
