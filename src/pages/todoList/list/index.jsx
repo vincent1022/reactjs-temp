@@ -5,7 +5,7 @@ import style from './style.module.scss'
 function List() {
 	const listService = useListService()
 	return (
-		<ul className={style.list}>
+		<ul className={style.root}>
 			{listService.list.map(e => (
 				<li className={'item'} key={e}>
 					hello - {e}
