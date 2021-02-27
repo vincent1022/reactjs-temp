@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import TodoList from '../pages/todoList'
+import Example from '../pages/example'
 import Home from '../pages/home'
 
 function Routes() {
@@ -10,8 +10,11 @@ function Routes() {
 				<Route path={'/'} exact>
 					<Home />
 				</Route>
-				<Route path={'/todo'} exact>
-					<TodoList />
+				<Route path={'/example'} exact>
+					<Example />
+				</Route>
+				<Route>
+					Oops 404 Not Found!
 				</Route>
 			</Switch>
 		</BrowserRouter>

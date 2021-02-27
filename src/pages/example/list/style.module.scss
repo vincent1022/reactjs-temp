@@ -1,0 +1,59 @@
+.root {
+  color: red;
+  width: 320px;
+
+  :global {
+    .head, .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__pic {
+        width: 120px;
+        padding: 0 6px;
+      }
+
+      &__name {
+        flex: 1;
+        padding: 0 6px;
+      }
+    }
+
+    .head {
+      margin: 12px 0;
+
+      &__pic {
+        border-right: 1px solid #fff;
+      }
+    }
+
+    .item {
+      font-weight: 900;
+      margin: 8px 0;
+      cursor: pointer;
+      position: relative;
+
+      &__name {
+        font-style: italic;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 1px;
+        background: #fff;
+        z-index: 1;
+        display: none;
+      }
+
+      &:hover::before {
+        display: block;
+      }
+    }
+  }
+}
+
