@@ -1,6 +1,8 @@
 .root {
   color: red;
   width: 320px;
+  border: 1px solid #fff;
+  margin-top: 12px;
 
   :global {
     .head, .item {
@@ -14,7 +16,7 @@
       }
 
       &__pic {
-        width: 60px;
+        width: 120px;
         padding: 0 6px;
       }
 
