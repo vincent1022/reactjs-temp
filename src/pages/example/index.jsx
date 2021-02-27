@@ -1,21 +1,21 @@
 import React from 'react'
-import useExampleService, { TodoService } from './useExampleService'
+import useExampleService, { ExampleService } from './useExampleService'
 import List from './list'
 import Control from './control'
 import style from './style.module.scss'
 
-function TodoList() {
-	const todoListService = useExampleService()
+function Example() {
+	const exampleService = useExampleService()
 	return (
-		<TodoService.Provider value={todoListService}>
+		<ExampleService.Provider value={exampleService}>
 			<div className={style.root}>
 				<div className="title">Example</div>
 				<hr className={'break-line'}/>
 				<Control />
 				<List />
 			</div>
-		</TodoService.Provider>
+		</ExampleService.Provider>
 	)
 }
 
-export default TodoList
+export default Example

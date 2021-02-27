@@ -1,9 +1,12 @@
-import { TodoService } from '../useExampleService'
+import { ExampleService } from '../useExampleService'
 import { useState, useContext, useEffect } from 'react'
 
 function useListService() {
-	const todoService = useContext(TodoService)
-	return {}
+	const { list, removeAtList } = useContext(ExampleService)
+	return {
+		list,
+		removeAtList,
+	}
 }
 
 export default useListService

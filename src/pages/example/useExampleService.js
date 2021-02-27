@@ -1,19 +1,15 @@
-import { createContext } from 'react'
-import useSingleton from '../../hooks/useSingleton'
+import { createContext, useState } from 'react'
 
-export const TodoService = createContext(null)
-
-const _listMethods = {
-  add(state, value, value2) {
-    state.push(value + value2)
-  }
-}
+export const ExampleService = createContext(null)
 
 function useExampleService() {
-	const [list, listMethods] = useSingleton([], _listMethods)
+	const [list, setList] = useState([])
+	const addList = val => setList(list => [...list, val])
+	const removeAtList = i => setList(list => [...list.slice(0, i), ...list.slice(i + 1)])
 	return {
 		list,
-		listMethods,
+		addList,
+		removeAtList,
 	}
 }
 

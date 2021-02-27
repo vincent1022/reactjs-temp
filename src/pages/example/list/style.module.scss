@@ -8,8 +8,13 @@
       align-items: center;
       justify-content: center;
 
+      &__id {
+        width: 30px;
+        padding: 0 6px;
+      }
+
       &__pic {
-        width: 120px;
+        width: 60px;
         padding: 0 6px;
       }
 
@@ -22,7 +27,7 @@
     .head {
       margin: 12px 0;
 
-      &__pic {
+      &__id, &__pic {
         border-right: 1px solid #fff;
       }
     }
@@ -32,6 +37,13 @@
       margin: 8px 0;
       cursor: pointer;
       position: relative;
+
+      &__pic {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
 
       &__name {
         font-style: italic;
