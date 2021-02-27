@@ -1,22 +1,30 @@
-import React from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Example from '../pages/Example'
-import Home from '../pages/Home'
+import LazyLoading from './components/LazyLoading'
+import RouteLayout from './Layout'
+
+const Example = lazy(() => import('../pages/Example'))
+const Home = lazy(() => import('../pages/Home'))
+const NotFound = lazy(() => import('./components/NotFound'))
 
 function Routes() {
 	return (
 		<BrowserRouter>
-			<Switch>
-				<Route path={'/'} exact>
-					<Home />
-				</Route>
-				<Route path={'/Example'} exact>
-					<Example />
-				</Route>
-				<Route>
-					Oops 404 Not Found!
-				</Route>
-			</Switch>
+			<Suspense fallback={LazyLoading}>
+				<Switch>
+					<RouteLayout>
+						<Route path={'/'} exact>
+							<Home />
+						</Route>
+						<Route path={'/Example'} exact>
+							<Example />
+						</Route>
+					</RouteLayout>
+					<Route>
+						<NotFound />
+					</Route>
+				</Switch>
+			</Suspense>
 		</BrowserRouter>
 	)
 }

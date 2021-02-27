@@ -1,4 +1,3 @@
-import React from 'react'
 import useExampleService, { ExampleService } from './useExampleService'
 import List from './List'
 import Control from './Control'
@@ -10,7 +9,7 @@ function Example() {
 		<ExampleService.Provider value={exampleService}>
 			<div className={style.root}>
 				<div className="title">Example</div>
-				<hr className={'break-line'}/>
+				<hr className={'break-line'} />
 				<Control />
 				<List />
 			</div>

@@ -1,12 +1,19 @@
-import React from 'react'
-import exampleType from '../../../../enums/exampleType'
+import exampleTypeEnum from '../../../../enums/exampleTypeEnum'
 
 function TypeSelect({ all, onChange }) {
 	return (
 		<select name="type" onChange={ev => onChange && onChange(ev)}>
-			{ all && <option value={exampleType.all}>全部</option>}
-			<option value={exampleType.dog}>狗派</option>
-      <option value={exampleType.cat}>貓派</option>
+			{all && (
+				<option value={exampleTypeEnum.all}>
+					{exampleTypeEnum.t(exampleTypeEnum.all)}
+				</option>
+			)}
+			<option value={exampleTypeEnum.dog}>
+				{exampleTypeEnum.t(exampleTypeEnum.dog)}
+			</option>
+			<option value={exampleTypeEnum.cat}>
+				{exampleTypeEnum.t(exampleTypeEnum.cat)}
+			</option>
 		</select>
 	)
 }

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import useControlService from './useControlService'
 import style from './style.module.scss'
 import TypeSelect from '../components/TypeSelect/inedx'

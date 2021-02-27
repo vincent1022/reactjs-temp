@@ -1,4 +1,5 @@
-import React from 'react'
-function RouteLayout() {}
+function RouteLayout({ children }) {
+	return <div>{children}</div>
+}
 
 export default RouteLayout

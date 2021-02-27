@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import useListService from './useListService'
 import style from './style.module.scss'
-import exampleType from '../../../enums/exampleType'
+import exampleTypeEnum from '../../../enums/exampleTypeEnum'
 import TypeSelect from '../components/TypeSelect/inedx'
 
 function List() {
@@ -23,7 +23,7 @@ function List() {
 							<img src={e.url} alt="" />
 						</div>
 						<div className="item__name">
-							{e.type === exampleType.cat ? '😸' : '🐕'} {e.name}
+							{e.type === exampleTypeEnum.cat ? '😸' : '🐕'} {e.name}
 						</div>
 					</li>
 				))}

@@ -1,15 +1,13 @@
 import { ExampleService } from '../useExampleService'
 import { useContext, useRef, useCallback, useEffect } from 'react'
-import exampleType from '../../../enums/exampleType'
+import exampleTypeEnum from '../../../enums/exampleTypeEnum'
 import axios from 'axios'
 
 function useControlService() {
-	const {
-		addList
-	} = useContext(ExampleService)
+	const { addList } = useContext(ExampleService)
 	const state = useRef({
 		id: 1,
-		type: exampleType.dog,
+		type: exampleTypeEnum.dog,
 		name: '',
 	})
 	const nameRef = useRef(null)
@@ -23,10 +21,10 @@ function useControlService() {
 
 		let url = ''
 
-		if (type === exampleType.dog) {
+		if (type === exampleTypeEnum.dog) {
 			const res = await axios.get('https://dog.ceo/api/breeds/image/random')
 			url = res.data.message
-		} else if (exampleType.cat) {
+		} else if (exampleTypeEnum.cat) {
 			const res = await axios.get('https://api.thecatapi.com/v1/images/search')
 			url = res.data[0].url
 		} else {

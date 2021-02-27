@@ -1,14 +1,17 @@
 import { ExampleService } from '../useExampleService'
 import { useState, useContext, useMemo } from 'react'
-import exampleType from '../../../enums/exampleType'
+import exampleTypeEnum from '../../../enums/exampleTypeEnum'
 
 function useListService() {
 	const { list, removeAtList } = useContext(ExampleService)
-	const [type, setType] = useState(exampleType.all)
+	const [type, setType] = useState(exampleTypeEnum.all)
 	const onChangeType = ev => {
 		setType(ev.target.value)
 	}
-	const filterList = useMemo(() => list.filter(e => type === exampleType.all || e.type === type), [list, type])
+	const filterList = useMemo(
+		() => list.filter(e => type === exampleTypeEnum.all || e.type === type),
+		[list, type],
+	)
 	return {
 		list,
 		removeAtList,
