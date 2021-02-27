@@ -1,16 +1,13 @@
 import React, { useMemo } from 'react'
 import useControlService from './useControlService'
 import style from './style.module.scss'
-import exampleType from '../../../enums/exampleType'
+import TypeSelect from '../components/TypeSelect/inedx'
 function Control() {
 	const { onChange, onKeyDown, onCreate, nameRef } = useControlService()
 	return useMemo(
 		() => (
 			<div className={style.root}>
-				<select name="type" onChange={onChange('type')}>
-					<option value={exampleType.dog}>狗派</option>
-					<option value={exampleType.cat}>貓派</option>
-				</select>
+				<TypeSelect onChange={onChange('type')} />
 				<input
 					ref={nameRef}
 					type="text"

@@ -1,7 +1,7 @@
 import React from 'react'
 import useExampleService, { ExampleService } from './useExampleService'
-import List from './list'
-import Control from './control'
+import List from './List'
+import Control from './Control'
 import style from './style.module.scss'
 
 function Example() {

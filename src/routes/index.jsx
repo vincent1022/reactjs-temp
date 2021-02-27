@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Example from '../pages/example'
-import Home from '../pages/home'
+import Example from '../pages/Example'
+import Home from '../pages/Home'
 
 function Routes() {
 	return (
@@ -10,7 +10,7 @@ function Routes() {
 				<Route path={'/'} exact>
 					<Home />
 				</Route>
-				<Route path={'/example'} exact>
+				<Route path={'/Example'} exact>
 					<Example />
 				</Route>
 				<Route>

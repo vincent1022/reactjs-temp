@@ -37,6 +37,7 @@ function useControlService() {
 			id,
 			url,
 			name,
+			type,
 		})
 
 		state.current.id++

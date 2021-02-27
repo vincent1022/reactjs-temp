@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import useListService from './useListService'
 import style from './style.module.scss'
+import exampleType from '../../../enums/exampleType'
 
 function List() {
 	const { list, removeAtList } = useListService()
@@ -18,7 +19,9 @@ function List() {
 						<div className="item__pic">
 							<img src={e.url} alt="" />
 						</div>
-						<div className="item__name">{e.name}</div>
+						<div className="item__name">
+							{e.type === exampleType.cat ? '😸' : '🐕'} {e.name}
+						</div>
 					</li>
 				))}
 			</ul>

@@ -8,7 +8,7 @@ function Home() {
 			<div class={'title'}>MyReactTemplate</div>
 			<div class={'tip'}>
 				範例
-				<Link to={'/example'}>
+				<Link to={'/Example'}>
 					{' <'}點擊前往{'>'}
 				</Link>
 			</div>
