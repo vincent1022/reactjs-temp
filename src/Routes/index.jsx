@@ -1,25 +1,18 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import LazyLoading from './components/LazyLoading'
-import RouteLayout from './Layout'
+import DashRoutes from './DashRoutes'
 
-const Example = lazy(() => import('../pages/Example'))
-const Home = lazy(() => import('../pages/Home'))
 const NotFound = lazy(() => import('./components/NotFound'))
 
 function Routes() {
 	return (
 		<BrowserRouter>
-			<Suspense fallback={LazyLoading}>
+			<Suspense fallback={<LazyLoading />}>
 				<Switch>
-					<RouteLayout>
-						<Route path={'/'} exact>
-							<Home />
-						</Route>
-						<Route path={'/Example'} exact>
-							<Example />
-						</Route>
-					</RouteLayout>
+					<Route path="/dash">
+						<DashRoutes />
+					</Route>
 					<Route>
 						<NotFound />
 					</Route>

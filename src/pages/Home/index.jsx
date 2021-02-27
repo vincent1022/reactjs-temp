@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 function Home() {
 	return (
 		<div className={styles.root}>
-			<div class={'title'}>MyReactTemplate</div>
-			<div class={'tip'}>
+			<div className={'title'}>MyReactTemplate</div>
+			<div className={'tip'}>
 				範例
-				<Link to={'/Example'}>
+				<Link to={'/dash/example'}>
 					{' <'}點擊前往{'>'}
 				</Link>
 			</div>
