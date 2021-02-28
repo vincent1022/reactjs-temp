@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import useListService from './useListService'
 import style from './style.module.scss'
-import exampleTypeEnum from '../../../enums/exampleTypeEnum'
-import TypeSelect from '../components/TypeSelect/inedx'
+import useListService from '@/pages/Example/List/useListService'
+import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
+import exampleTypeEnum from '@/enums/exampleTypeEnum'
 
 function List() {
 	const { filterList, removeAtList, onChangeType } = useListService()

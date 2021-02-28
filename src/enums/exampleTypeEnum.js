@@ -1,4 +1,4 @@
-import Enum from './index'
+import Enum from '@/enums/index'
 
 const exampleTypeEnum = {
 	all: 'all',

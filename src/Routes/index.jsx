@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import LazyLoading from './components/LazyLoading'
-import DashRoutes from './DashRoutes'
+import DashRoutes from '@/Routes/DashRoutes'
+import LazyLoading from '@/Routes/components/LazyLoading'
 
 const NotFound = lazy(() => import('./components/NotFound'))
 

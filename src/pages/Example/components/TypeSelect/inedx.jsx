@@ -1,4 +1,4 @@
-import exampleTypeEnum from '../../../../enums/exampleTypeEnum'
+import exampleTypeEnum from '@/enums/exampleTypeEnum'
 
 function TypeSelect({ all, onChange }) {
 	return (
