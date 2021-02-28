@@ -4,9 +4,9 @@ import exampleTypeEnum from '../../../enums/exampleTypeEnum'
 import axios from 'axios'
 
 function useControlService() {
-	const { addList } = useContext(ExampleService)
+	const { list, addList } = useContext(ExampleService)
 	const state = useRef({
-		id: 1,
+		id: list.length ? list[list.length - 1].id + 1 : 1,
 		type: exampleTypeEnum.dog,
 		name: '',
 	})

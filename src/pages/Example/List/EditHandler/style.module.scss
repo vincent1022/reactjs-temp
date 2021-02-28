@@ -1,0 +1,26 @@
+.root {
+  :global {
+    .edit-btn {
+      position: relative;
+      cursor: pointer;
+      z-index: 1;
+    }
+  }
+}
+
+.modalContent {
+  :global {
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      &__label {
+        width: 80px;
+        font-weight: 900;
+        border-right: 1px solid #000;
+        margin-right: 8px;
+      }
+      &__value {}
+    }
+  }
+}

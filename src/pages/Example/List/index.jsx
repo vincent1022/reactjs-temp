@@ -3,6 +3,7 @@ import style from './style.module.scss'
 import useListService from '@/pages/Example/List/useListService'
 import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
 import exampleTypeEnum from '@/enums/exampleTypeEnum'
+import EditHandler from '@/pages/Example/List/EditHandler'
 
 function List() {
 	const { filterList, removeAtList, onChangeType } = useListService()
@@ -17,7 +18,7 @@ function List() {
 					<div className="head__name">勇者名稱</div>
 				</div>
 				{filterList.map((e, i) => (
-					<li className={'item'} key={e.id} onClick={() => removeAtList(i)}>
+					<li className={'item'} key={e.id} /*onClick={() => removeAtList(i)}*/>
 						<div className="item__id">{e.id}</div>
 						<div className="item__pic">
 							<img src={e.url} alt="" />
@@ -25,6 +26,7 @@ function List() {
 						<div className="item__name">
 							{e.type === exampleTypeEnum.cat ? '😸' : '🐕'} {e.name}
 						</div>
+						<EditHandler item={e} />
 					</li>
 				))}
 			</ul>
