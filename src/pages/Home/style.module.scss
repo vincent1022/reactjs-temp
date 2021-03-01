@@ -1,3 +1,12 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -7,6 +16,13 @@
   background: #1b1b1b;
   color: #fff;
   :global {
+    .logo {
+      width: 212px;
+      height: 150px;
+      &:local {
+        animation: rotate infinite 12s linear;
+      }
+    }
     .title {
       font-size: 24px;
       margin-bottom: 12px;

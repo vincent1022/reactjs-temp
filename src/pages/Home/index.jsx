@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 function Home() {
 	return (
 		<div className={styles.root}>
+			<div className={'logo'}>
+				<img src="/src/assets/logo.svg" alt="" />
+			</div>
 			<div className={'title'}>MyReactTemplate</div>
 			<div className={'tip'}>
 				範例
