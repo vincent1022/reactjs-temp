@@ -22,7 +22,7 @@ axios.interceptors.response.use(
 )
 
 const apis = {
-	login: params => axios.post('login', params)
+	login: params => axios.post('login', params),
 }
 
 function installApi() {
