@@ -5,12 +5,25 @@ export const ExampleService = createContext(null)
 
 function useExampleService() {
 	const [list, setList] = useLocalStorageState('mrt_list', [])
+	const getItemIndexAndCall = (id, callback) => {
+		const index = list.findIndex(e => e.id === id)
+		if (index !== -1) {
+			callback && callback(index)
+		}
+	}
 	const addList = val => setList(list => [...list, val])
-	const removeAtList = i =>
-		setList(list => [...list.slice(0, i), ...list.slice(i + 1)])
+	const updateItem = (val, id) =>
+		getItemIndexAndCall(id, i =>
+			setList(list => [...list.slice(0, i), val, ...list.slice(i + 1)]),
+		)
+	const removeAtList = id =>
+		getItemIndexAndCall(id, i =>
+			setList(list => [...list.slice(0, i), ...list.slice(i + 1)]),
+		)
 	return {
 		list,
 		addList,
+		updateItem,
 		removeAtList,
 	}
 }

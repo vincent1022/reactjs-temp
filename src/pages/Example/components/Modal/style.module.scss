@@ -18,6 +18,9 @@
       height: 350px;
       position: relative;
       padding: 24px;
+      &--none {
+        height: auto;
+      }
       &__children {
         flex: 1;
       }

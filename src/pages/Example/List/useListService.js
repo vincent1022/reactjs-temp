@@ -3,7 +3,7 @@ import { useState, useContext, useMemo } from 'react'
 import exampleTypeEnum from '../../../enums/exampleTypeEnum'
 
 function useListService() {
-	const { list, removeAtList } = useContext(ExampleService)
+	const { list } = useContext(ExampleService)
 	const [type, setType] = useState(exampleTypeEnum.all)
 	const onChangeType = ev => {
 		setType(ev.target.value)
@@ -14,7 +14,6 @@ function useListService() {
 	)
 	return {
 		list,
-		removeAtList,
 		onChangeType,
 		filterList,
 	}

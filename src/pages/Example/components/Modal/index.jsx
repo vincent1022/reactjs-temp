@@ -2,18 +2,27 @@ import ReactDOM from 'react-dom'
 import { useMemo } from 'react'
 import style from './style.module.scss'
 
-function Modal({ visible, title, onCancel, onSubmit, children }) {
+function Modal({
+	visible,
+	title,
+	onCancel,
+	onSubmit,
+	children,
+	noContent = false,
+}) {
 	return ReactDOM.createPortal(
 		useMemo(
 			() =>
 				visible ? (
 					<div className={style.root}>
-						<div className="content">
+						<div className={`content${noContent ? ' content--none' : ''}`}>
 							<div className="content__close" onClick={onCancel}>
 								X
 							</div>
 							<div className="content__title">{title}</div>
-							<div className="content__children">{children}</div>
+							{!noContent ? (
+								<div className="content__children">{children}</div>
+							) : null}
 							<div className="content__footer">
 								<button
 									className={'content__footer__cancel'}

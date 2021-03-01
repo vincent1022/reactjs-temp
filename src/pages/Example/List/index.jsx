@@ -6,7 +6,7 @@ import exampleTypeEnum from '@/enums/exampleTypeEnum'
 import EditHandler from '@/pages/Example/List/EditHandler'
 
 function List() {
-	const { filterList, removeAtList, onChangeType } = useListService()
+	const { filterList, onChangeType } = useListService()
 	return useMemo(
 		() => (
 			<ul className={style.root}>
@@ -18,7 +18,7 @@ function List() {
 					<div className="head__name">勇者名稱</div>
 				</div>
 				{filterList.map((e, i) => (
-					<li className={'item'} key={e.id} /*onClick={() => removeAtList(i)}*/>
+					<li className={'item'} key={e.id}>
 						<div className="item__id">{e.id}</div>
 						<div className="item__pic">
 							<img src={e.url} alt="" />

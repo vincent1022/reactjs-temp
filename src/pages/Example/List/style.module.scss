@@ -37,7 +37,6 @@
     .item {
       font-weight: 900;
       margin: 8px 0;
-      cursor: pointer;
       position: relative;
 
       &__pic {
@@ -49,23 +48,6 @@
 
       &__name {
         font-style: italic;
-      }
-
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-        height: 1px;
-        background: #fff;
-        z-index: 1;
-        display: none;
-      }
-
-      &:hover::before {
-        display: block;
       }
     }
   }
