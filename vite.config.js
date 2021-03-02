@@ -4,8 +4,8 @@ const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
 
-const envFiles = [`.env`, `.env.${process.env.NODE_ENV}`]
-
+const envFiles = [`.env`, `.env.${process.env.APP_CONFIG}`]
+console.log(process.env.APP_CONFIG)
 for (const file of envFiles) {
 	try {
 		const f = fs.readFileSync(file)
