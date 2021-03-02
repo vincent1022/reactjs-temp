@@ -9,7 +9,7 @@ function useEditHandlerService(item) {
 
 	useEffect(() => {
 		if (visibleEdit === false) {
-			state.current = JSON.parse(JSON.stringify(item))
+			state.current = { ...item }
 		}
 	}, [item, visibleEdit])
 
