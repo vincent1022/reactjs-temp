@@ -1,4 +1,4 @@
-import Enum from '@/lib/enums'
+import Enum from '@/lib/Enums'
 
 const exampleTypeEnum = {
 	all: 'all',
