@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom'
 import { useMemo } from 'react'
 import style from './style.module.scss'
+import ClassName from '@/lib/ClassName'
 
 function Modal({
 	visible,
@@ -15,7 +16,14 @@ function Modal({
 			() =>
 				visible ? (
 					<div className={style.root}>
-						<div className={`content${noContent ? ' content--none' : ''}`}>
+						<div
+							className={ClassName.create(
+								{
+									'content--none': noContent,
+								},
+								'content',
+							)}
+						>
 							<div className="content__close" onClick={onCancel}>
 								X
 							</div>
