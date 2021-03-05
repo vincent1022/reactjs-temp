@@ -399,25 +399,3 @@ const lastMonth = (format = '') => {
   return monthResult(true, format)
 }
 // time END
-
-
-
-
-
-
-
-
-
-
-const downloadFile = (fileBlob, fileName, fileType = 'xlsx') => {
-  if (!fileBlob) {
-    return
-  }
-  let url = window.URL.createObjectURL(new Blob([fileBlob]))
-  let link = document.createElement('a')
-  link.style.display = 'none'
-  link.href = url
-  link.setAttribute('download', `${fileName}.${fileType}`)
-  document.body.appendChild(link)
-  link.click()
-}
