@@ -15,14 +15,18 @@ class Enum {
 	static init(e, translation = {}) {
 		e._t = translation
 		e._r = Object.entries(e).reduce(
-			(enums, [name, val]) => ((enums[val] = name), enums),
+			(en, [name, val]) => ((en[val] = name), en),
 			{},
 		)
-		e.t = keyOrVal => e._t[keyOrVal] ?? e._r[keyOrVal] ?? keyOrVal
+		e.t = val => e._r[val] ?? val
 		e.key = val => e._r[val]
-		e.add = (key, val) => {
+		e.add = (key, val, t) => {
 			e[key] = val
 			e[val] = key
+			e._r[val] = key
+			if (t != null) {
+				e._t[key] = t
+			}
 		}
 		e.delete = key => {
 			const val = e[key]

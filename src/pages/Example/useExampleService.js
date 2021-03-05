@@ -1,5 +1,6 @@
 import { createContext } from 'react'
 import { useLocalStorageState } from '@/hooks'
+import { Arr } from '@/lib'
 
 export const ExampleService = createContext(null)
 
@@ -11,15 +12,11 @@ function useExampleService() {
 			callback && callback(index)
 		}
 	}
-	const addList = val => setList(list => [...list, val])
+	const addList = val => setList(Arr.push(val))
 	const updateItem = (val, id) =>
-		getItemIndexAndCall(id, i =>
-			setList(list => [...list.slice(0, i), val, ...list.slice(i + 1)]),
-		)
+		getItemIndexAndCall(id, i => setList(Arr.update(i, val)))
 	const removeAtList = id =>
-		getItemIndexAndCall(id, i =>
-			setList(list => [...list.slice(0, i), ...list.slice(i + 1)]),
-		)
+		getItemIndexAndCall(id, i => setList(Arr.splice(i, 1)))
 	return {
 		list,
 		addList,

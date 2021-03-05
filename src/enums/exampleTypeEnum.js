@@ -1,11 +1,11 @@
-import { Enums } from '@/lib'
+import { Enum } from '@/lib'
 
 const exampleTypeEnum = {
 	all: 'all',
 	dog: 'dog',
 	cat: 'cat',
 }
-Enums.init(exampleTypeEnum, {
+Enum.init(exampleTypeEnum, {
 	all: '全部',
 	dog: '狗派',
 	cat: '貓派',
