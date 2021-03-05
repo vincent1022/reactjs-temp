@@ -465,21 +465,3 @@ const copyText = (value: number | string, t: Function) => {
   input.remove()
   createMessage(`${t('component.copySuccess')}：${copy}`, 'success')
 }
-
-
-
-
-
-
-function stepPrice(price: number | string | undefined, step = 3) {
-  let _price: number | string | undefined = price
-
-  if (typeof price === "number")
-    _price = String(price)
-
-  if (typeof _price === "string") {
-    _price = _price.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-  }
-
-  return _price
-}
