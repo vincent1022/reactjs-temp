@@ -1,4 +1,5 @@
-import useLocalStorageState from '@/hooks/storage/useLocalStorageState'
-import useSessionStorageState from '@/hooks/storage/useSessionStorageState'
+import useLocalStorageState from './storage/useLocalStorageState'
+import useSessionStorageState from './storage/useSessionStorageState'
+import useStorageState from './storage/useStorageState'
 
-export { useLocalStorageState, useSessionStorageState }
+export { useLocalStorageState, useSessionStorageState, useStorageState }
