@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { _hooksStore } from '../_/store'
 
+const CACHE = {}
 function useStorageState(symbol, initialValue) {
-	const [state, setState] = useState(_hooksStore[symbol] ?? initialValue)
+	const [state, setState] = useState(CACHE[symbol] ?? initialValue)
 	useEffect(() => {
-		_hooksStore[symbol] = state
+		CACHE[symbol] = state
 	}, [state])
 	return [state, setState]
 }
