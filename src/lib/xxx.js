@@ -430,38 +430,3 @@ const checkMobile = () => {
     navigator.userAgent
   )
 }
-
-
-
-
-
-
-
-const useClickOutside = (menuRef: Ref<null | HTMLElement>) => {
-  const isClickOutside = ref(false)
-  const onClickOutside = (ev: MouseEvent) => {
-    if (menuRef.value !== null) {
-      isClickOutside.value = !menuRef.value.contains(ev.target as HTMLElement)
-    }
-  }
-
-  onMounted(() => document.addEventListener('click', onClickOutside, true))
-  onUnmounted(() => document.removeEventListener('click', onClickOutside, true))
-
-  return { isClickOutside }
-}
-
-
-
-
-const copyText = (value: number | string, t: Function) => {
-  const copy = String(value)
-  const input: HTMLInputElement = document.createElement('input')
-  document.body.prepend(input)
-  input.value = copy
-  input.select()
-  input.setSelectionRange(0, 99999)
-  document.execCommand('copy')
-  input.remove()
-  createMessage(`${t('component.copySuccess')}：${copy}`, 'success')
-}
