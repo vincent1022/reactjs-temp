@@ -1,1 +1,5 @@
-// TODO pending response error
+function useFetch() {
+	// return [{error, data},]
+}
+
+export default useFetch
