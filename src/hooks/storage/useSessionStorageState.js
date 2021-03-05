@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getStorageItem, useUpdateStorage } from '@/hooks/storage/util'
+import { getStorageItem, useUpdateStorage } from './util'
 
 function useSessionStorageState(key, initialValue) {
 	const [state, setState] = useState(
