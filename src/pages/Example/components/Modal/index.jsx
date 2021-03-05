@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import { useMemo } from 'react'
 import style from './style.module.scss'
-import ClassName from '@/lib/ClassName'
+import { ClassName } from '@/lib'
 
 function Modal({
 	visible,
