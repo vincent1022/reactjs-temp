@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import useLocalStorageState from '@/hooks/storage/useLocalStorageState'
+import { useLocalStorageState } from '@/hooks'
 
 export const ExampleService = createContext(null)
 
