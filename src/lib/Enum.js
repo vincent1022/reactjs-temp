@@ -7,10 +7,10 @@ class Enum {
 	 * 內置成員
 	 * _t [Object] 翻譯檔
 	 * _r [Object] enumMap key val reverse 物件
-	 * t (enumMap 的 key 或 value) => 翻譯的文字
-	 * key [String] 傳入值取出對應的 enum key
-	 * add [void] 添加一個項目
-	 * delete [void] 刪除一個項目
+	 * t (value: any): 翻譯的文字
+	 * key (value: any): [String] 傳入值取出對應的 enum key
+	 * add (key: string, value: any, t?: string): [void] 添加一個項目
+	 * delete (key: string): [void] 刪除一個項目
 	 */
 	static init(e, translation = {}) {
 		e._t = translation
