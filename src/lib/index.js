@@ -7,4 +7,13 @@ import copyText from './copyText'
 import checkMobile from './checkMobile'
 import downloadBlob from './downloadBlob'
 
-export { ClassName, Arr, Enum, devLog, stepPrice, copyText, checkMobile, downloadBlob }
+export {
+	ClassName,
+	Arr,
+	Enum,
+	devLog,
+	stepPrice,
+	copyText,
+	checkMobile,
+	downloadBlob,
+}
