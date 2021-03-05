@@ -1,3 +1,8 @@
+/**
+ * 數字加逗號
+ * @param step [number] 多少位加逗號，預設千非位
+ * @return [string] 加逗號的文字
+ */
 const stepPrice = (() => {
 	const ds = {}
 	const createStepD = step =>
