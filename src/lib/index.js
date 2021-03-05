@@ -6,6 +6,7 @@ import stepPrice from './stepPrice'
 import copyText from './copyText'
 import checkMobile from './checkMobile'
 import downloadBlob from './downloadBlob'
+import insertAfter from './insertAfter'
 
 export {
 	ClassName,
@@ -16,4 +17,5 @@ export {
 	copyText,
 	checkMobile,
 	downloadBlob,
+	insertAfter,
 }

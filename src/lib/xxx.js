@@ -1,13 +1,3 @@
-function insertAfter(newEl, targetEl) {
-	const parentEl = targetEl.parentNode
-
-	if (parentEl.lastChild === targetEl) {
-		parentEl.appendChild(newEl)
-	} else {
-		parentEl.insertBefore(newEl, targetEl.nextSibling)
-	}
-}
-
 // routeHistory
 
 // 翻譯 START
