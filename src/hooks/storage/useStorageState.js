@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { _hooksStore } from '../_store'
+import { _hooksStore } from '../_/store'
 
 function useStorageState(symbol, initialValue) {
 	const [state, setState] = useState(_hooksStore[symbol] ?? initialValue)
