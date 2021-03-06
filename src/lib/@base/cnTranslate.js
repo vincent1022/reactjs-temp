@@ -13,7 +13,7 @@ const stObj = (() => {
 	return result
 })()
 
-function _t(text, prefix) {
+function t(text, prefix) {
 	let result = ''
 	for (let i = 0; i < text.length; i++) {
 		const t = text[i]
@@ -23,15 +23,15 @@ function _t(text, prefix) {
 	return result
 }
 
-export function toSimple(text) {
-	return _t(text, 't')
+function toSimple(text) {
+	return t(text, 't')
 }
 
-export function toTraditional(text) {
-	return _t(text, 's')
+function toTraditional(text) {
+	return t(text, 's')
 }
 
-export function checkSameChinese(text1, text2) {
+function checkSameChinese(text1, text2) {
 	if (text1.length !== text2.length) {
 		return false
 	}
@@ -55,6 +55,14 @@ export function checkSameChinese(text1, text2) {
 	return same
 }
 
-export function checkIncludeText(text, keyword) {
+function checkIncludeText(text, keyword) {
 	return toSimple(text).includes(toSimple(keyword))
+}
+
+
+export {
+	toSimple,
+	toTraditional,
+	checkSameChinese,
+	checkIncludeText,
 }
