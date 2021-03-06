@@ -1,6 +1,6 @@
 import { createContext } from 'react'
-import { useLoad, useLocalStorageState } from '@/hooks'
-import { Arr } from '@/lib'
+import { useLoad, useLocalStorageState } from '@baseHooks'
+import { Arr } from '@baseLib'
 import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'
 

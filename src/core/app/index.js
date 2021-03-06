@@ -1,6 +1,6 @@
 import '@/core/style/index.css'
 import installApi from '../apiService'
-import { devLog } from '@/lib'
+import { devLog } from '@baseLib'
 
 function initApp() {
 	window.$devLog = devLog

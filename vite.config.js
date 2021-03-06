@@ -5,7 +5,7 @@ const path = require('path')
 const dotenv = require('dotenv')
 
 const envFiles = [`.env`, `.env.${process.env.APP_CONFIG}`]
-console.log(process.env.APP_CONFIG)
+
 for (const file of envFiles) {
 	try {
 		const f = fs.readFileSync(file)
@@ -26,6 +26,8 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, './src'),
+			'@baseLib': path.resolve(__dirname, './src/lib/base'),
+			'@baseHooks': path.resolve(__dirname, './src/hooks/base'),
 		},
 	},
 	server: {
