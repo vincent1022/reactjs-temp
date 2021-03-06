@@ -20,19 +20,19 @@ function useLoad(promiseFun, options) {
 	})
 
 	const pFun = useCallback(
-		async (promiseFun, key, ...args) => {
+		async (fun, key, ...args) => {
 			const { current: th } = throttle
-			const { current: tKeys } = throttleKeys
+
 			if (th) {
-				if (tKeys[key]) {
+				if (throttleKeys.current[key]) {
 					return
 				}
-				tKeys[key] = 1
+				throttleKeys.current[key] = 1
 			}
 
 			try {
 				setState({ error: undefined, pending: true })
-				await promiseFun(...args)
+				await fun.call(promiseFun, ...args)
 				setState({ error: undefined, pending: false })
 			} catch (error) {
 				console.error(error)
@@ -40,10 +40,10 @@ function useLoad(promiseFun, options) {
 			}
 
 			if (th) {
-				delete tKeys[key]
+				delete throttleKeys.current[key]
 			}
 		},
-		[throttle.current, throttleKeys.current],
+		[throttle.current],
 	)
 
 	const dispatch = useCallback(
