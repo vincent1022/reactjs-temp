@@ -7,7 +7,7 @@ import List from '@/pages/Example/List'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 
-function Example({ children }) {
+function Example() {
 	const exampleService = useExampleService()
 	return (
 		<ExampleService.Provider value={exampleService}>
