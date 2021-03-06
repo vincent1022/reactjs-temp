@@ -59,10 +59,4 @@ function checkIncludeText(text, keyword) {
 	return toSimple(text).includes(toSimple(keyword))
 }
 
-
-export {
-	toSimple,
-	toTraditional,
-	checkSameChinese,
-	checkIncludeText,
-}
+export { toSimple, toTraditional, checkSameChinese, checkIncludeText }
