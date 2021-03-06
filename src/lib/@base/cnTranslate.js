@@ -7,8 +7,8 @@ const stObj = (() => {
 	for (let i = 0; i < st.length; i += 2) {
 		const simple = st[i]
 		const traditional = st[i + 1]
-		result[`s_${simple}`] = traditional
-		result[`t_${traditional}`] = simple
+		result[`s${simple}`] = traditional
+		result[`t${traditional}`] = simple
 	}
 	return result
 })()
@@ -24,11 +24,11 @@ function _t(text, prefix) {
 }
 
 export function toSimple(text) {
-	return _t(text, 't_')
+	return _t(text, 't')
 }
 
 export function toTraditional(text) {
-	return _t(text, 's_')
+	return _t(text, 's')
 }
 
 export function checkSameChinese(text1, text2) {
@@ -39,7 +39,7 @@ export function checkSameChinese(text1, text2) {
 	for (let i = 0; i < text1.length; i++) {
 		const t1 = text1[i]
 		const t2 = text2[i]
-		const stt = stObj[`t_${t1}`]
+		const stt = stObj[`t${t1}`]
 		if (stt != null) {
 			if (!(stt === t2 || t1 === t2)) {
 				same = false
