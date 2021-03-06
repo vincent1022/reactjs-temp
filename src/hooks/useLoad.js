@@ -30,8 +30,9 @@ function useLoad(promiseFun, options) {
 
 		try {
 			setState({ error: undefined, pending: throttle.current })
-			await fun.call(promiseFun, ...args)
+			const result = await fun.call(promiseFun, ...args)
 			setState({ error: undefined, pending: getRemoveThrottle(key) })
+			return result
 		} catch (error) {
 			console.error(error)
 			setState({ error, pending: getRemoveThrottle(key) })
@@ -41,7 +42,7 @@ function useLoad(promiseFun, options) {
 	const dispatch = useCallback(
 		async (key = 'run', ...args) => {
 			const fun = isFun ? promiseFun : promiseFun[key]
-			await pFun(fun, key, ...args)
+			return await pFun(fun, key, ...args)
 		},
 		[promiseFun, pFun],
 	)
