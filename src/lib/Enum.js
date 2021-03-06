@@ -1,37 +1,43 @@
+/**
+ * Enum
+ * @member translation [Object] 翻譯文檔
+ * @member reverseEnum [Object] 反轉的 enum
+ */
 class Enum {
+	constructor(_enum, translation) {
+		this.translation = translation
+		this.reverseEnum = Object.entries(_enum).reduce(
+			(en, [name, val]) => ((en[val] = name), en),
+			{},
+		)
+	}
 	/**
-	 * Enum 方法賦予函數
-	 * @param e [Object] enumMap
+	 * 方法賦予函數
+	 * @param _enum [Object] enum
 	 * @param translation [Object] 翻譯文檔
 	 *
-	 * 內置成員
-	 * _t [Object] 翻譯檔
-	 * _r [Object] enumMap key val reverse 物件
 	 * t (value: any): 翻譯的文字
 	 * key (value: any): [String] 傳入值取出對應的 enum key
 	 * add (key: string, value: any, t?: string): [void] 添加一個項目
 	 * delete (key: string): [void] 刪除一個項目
 	 */
-	static init(e, translation = {}) {
-		e._t = translation
-		e._r = Object.entries(e).reduce(
-			(en, [name, val]) => ((en[val] = name), en),
-			{},
-		)
-		e.t = val => e._r[val] ?? val
-		e.key = val => e._r[val]
-		e.add = (key, val, t) => {
-			e[key] = val
-			e[val] = key
-			e._r[val] = key
+	static init(_enum, translation = {}) {
+		const obj = new Enum(_enum, translation)
+
+		_enum.t = val => obj.translation[obj.reverseEnum[val]] ?? val
+		_enum.key = val => obj.reverseEnum[val]
+		_enum.add = (key, val, t) => {
+			_enum[key] = val
+			_enum[val] = key
+			obj.reverseEnum[val] = key
 			if (t != null) {
-				e._t[key] = t
+				obj.translation[key] = t
 			}
 		}
-		e.delete = key => {
-			const val = e[key]
-			delete e[key]
-			delete e._r[val]
+		_enum.delete = key => {
+			const val = _enum[key]
+			delete _enum[key]
+			delete obj.reverseEnum[val]
 		}
 	}
 }
