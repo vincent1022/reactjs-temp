@@ -93,26 +93,26 @@ const format = (() => {
 		'Dec',
 	]
 	const yyyy = 'yyyy' // 2020
-	const yy = 'yy' // 2002 -> 02, 2020 -> 20
-	const y = 'y' // 2002 -> 2, 2020 -> 20
-	const MMMM = 'MMMM' // January
-	const MMM = 'MMM' // Jan
-	const MM = 'MM' // 12 -> 12, 6 -> 06
-	const M = 'M' // 12 -> 12, 6 -> 6
+	const yy = 'yy' // 2002: 02, 2020: 20
+	const y = 'y' // 2002: 2, 2020: 20
+	const MMMM = 'MMMM' // December
+	const MMM = 'MMM' // Dec
+	const MM = 'MM' // 12: 12, 6: 06
+	const M = 'M' // 12: 12, 6: 6
 	const dddd = 'dddd' // Sunday
 	const ddd = 'ddd' // Sun
-	const dd = 'dd' // 7 -> 07
-	const d = 'd' // 7 -> 7
-	const hh = 'hh' // 20 -> 08, 8 -> 08
-	const h = 'h' // 20 -> 8, 8 -> 8
-	const HH = 'HH' // 20 -> 20, 8 -> 08
-	const H = 'H' // 20 -> 20, 8 -> 8
-	const mm = 'mm' // 20 -> 20, 8 -> 08
-	const m = 'm' // 20 -> 20, 8 -> 8
-	const ss = 'ss' // 20 -> 20, 8 -> 08
-	const s = 's' // 20 -> 20, 8 -> 8
-	const tt = 'tt' // 20 -> PM, 8 -> AM
-	const t = 't' // 20 -> P, 8 -> A
+	const dd = 'dd' // 7: 07
+	const d = 'd' // 7: 7
+	const hh = 'hh' // 20: 08, 8: 08
+	const h = 'h' // 20: 8, 8: 8
+	const HH = 'HH' // 20: 20, 8: 08
+	const H = 'H' // 20: 20, 8: 8
+	const mm = 'mm' // 20: 20, 8: 08
+	const m = 'm' // 20: 20, 8: 8
+	const ss = 'ss' // 20: 20, 8: 08
+	const s = 's' // 20: 20, 8: 8
+	const tt = 'tt' // 20: PM, 8: AM
+	const t = 't' // 20: P, 8: A
 
 	function padStartZero(number) {
 		if (typeof number === 'number') {
@@ -202,13 +202,13 @@ const format = (() => {
 			} else if ($t != null) {
 				const hour = date.getHours()
 				const tmCondition = hour > 12
-				const ttm = tmCondition ? 'PM' : 'AM'
-				const tm = tmCondition ? 'P' : 'A'
+				const _tt = tmCondition ? 'PM' : 'AM'
+				const _t = tmCondition ? 'P' : 'A'
 				switch (match) {
 					case tt:
-						return ttm
+						return _tt
 					case t:
-						return tm
+						return _t
 				}
 			}
 			return match
