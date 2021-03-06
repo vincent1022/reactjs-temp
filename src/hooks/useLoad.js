@@ -27,20 +27,32 @@ function useLoad(promiseFun, options) {
 				if (throttleKeys.current[key]) {
 					return
 				}
-				throttleKeys.current[key] = 1
+				throttleKeys.current[key] = true
 			}
 
 			try {
-				setState({ error: undefined, pending: true })
+				let pending = th ? throttleKeys.current : true
+				setState({ error: undefined, pending })
 				await fun.call(promiseFun, ...args)
-				setState({ error: undefined, pending: false })
+				if (th) {
+					delete throttleKeys.current[key]
+					const tKeys = Object.keys(throttleKeys.current)
+					pending = tKeys.length ? throttleKeys.current : false
+				} else {
+					pending = false
+				}
+				setState({ error: undefined, pending })
 			} catch (error) {
 				console.error(error)
-				setState({ error, pending: false })
-			}
-
-			if (th) {
-				delete throttleKeys.current[key]
+				let pending = false
+				if (th) {
+					delete throttleKeys.current[key]
+					const tKeys = Object.keys(throttleKeys.current)
+					if (tKeys.length) {
+						pending = throttleKeys.current
+					}
+				}
+				setState({ error, pending })
 			}
 		},
 		[throttle.current],
