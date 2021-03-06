@@ -4,7 +4,7 @@ import exampleTypeEnum from '../../../enums/exampleTypeEnum'
 import axios from 'axios'
 
 function useControlService() {
-	const { list, addList } = useContext(ExampleService)
+	const { list, addList, fetchImg } = useContext(ExampleService)
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,
 		type: exampleTypeEnum.dog,
@@ -19,18 +19,7 @@ function useControlService() {
 			return alert('勇者名稱不得為空')
 		}
 
-		let url = ''
-
-		if (type === exampleTypeEnum.dog) {
-			const res = await axios.get('https://dog.ceo/api/breeds/image/random')
-			url = res.data.message
-		} else if (exampleTypeEnum.cat) {
-			const res = await axios.get('https://api.thecatapi.com/v1/images/search')
-			url = res.data[0].url
-		} else {
-			return alert('必須為狗派或貓派')
-		}
-
+		const url = await fetchImg(type)
 		addList({
 			id,
 			url,

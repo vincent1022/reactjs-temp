@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { ExampleService } from '@/pages/Example/useExampleService'
 
 function useEditHandlerService(item) {
-	const { updateItem, removeAtList } = useContext(ExampleService)
+	const { updateItem, removeAtList, fetchImg } = useContext(ExampleService)
 	const [visibleEdit, setVisibleEdit] = useState(false)
 	const [visibleDel, setVisibleDel] = useState(false)
 	const state = useRef(item)
@@ -16,10 +16,15 @@ function useEditHandlerService(item) {
 	function onToggleEditModal(visible) {
 		setVisibleEdit(visible)
 	}
-	function onSubmitEditModal() {
+	async function onSubmitEditModal() {
 		const s = state.current
-		if (s.name === item.name && s.type === item.type) {
+		const isSameName = s.name === item.name
+		const isSameType = s.type === item.type
+		if (isSameName && isSameType) {
 			return alert('不想改就給我按取消')
+		}
+		if (!isSameType) {
+			s.url = await fetchImg(s.type)
 		}
 		setVisibleEdit(false)
 		updateItem(s, item.id)

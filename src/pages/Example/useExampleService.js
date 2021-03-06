@@ -1,6 +1,8 @@
 import { createContext } from 'react'
 import { useLocalStorageState } from '@/hooks'
 import { Arr } from '@/lib'
+import exampleTypeEnum from '@/enums/exampleTypeEnum'
+import axios from 'axios'
 
 export const ExampleService = createContext(null)
 
@@ -17,11 +19,21 @@ function useExampleService() {
 		getItemIndexAndCall(id, i => setList(Arr.update(i, val)))
 	const removeAtList = id =>
 		getItemIndexAndCall(id, i => setList(Arr.splice(i, 1)))
+	const fetchImg = async type => {
+		if (type === exampleTypeEnum.dog) {
+			const res = await axios.get('https://dog.ceo/api/breeds/image/random')
+			return res.data.message
+		} else if (exampleTypeEnum.cat) {
+			const res = await axios.get('https://api.thecatapi.com/v1/images/search')
+			return res.data[0].url
+		}
+	}
 	return {
 		list,
 		addList,
 		updateItem,
 		removeAtList,
+		fetchImg,
 	}
 }
 
