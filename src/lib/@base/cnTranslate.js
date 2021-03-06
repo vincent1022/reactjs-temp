@@ -9,28 +9,54 @@ const stObj = (() => {
 	for (let i = 0; i < simple.length; i++) {
 		const simpleText = simple[i]
 		const traditionalText = traditional[i]
-		const st = {
-			simple: simpleText,
-			traditional: traditionalText,
-		}
-		result[simpleText] = st
-		result[traditionalText] = st
+		result[`s_${simpleText}`] = traditionalText
+		result[`t_${traditionalText}`] = simpleText
 	}
 	return result
 })()
 
-const translateChinese = (text: string): string => {
-	let result: string = ''
+function _t(text, prefix) {
+	let result = ''
 	for (let i = 0; i < text.length; i++) {
-		const t: string = text[i]
-		const st: string = stObj[t]?.traditional || t
+		const t = text[i]
+		const st = stObj[`${prefix}${t}`] || t
 		result += st
 	}
 	return result
 }
 
-const isSameChinese = (text: string, keyword: string): boolean => {
-	const t = translateChinese(text)
-	const k = translateChinese(keyword)
-	return t.includes(k)
+export function toSimple(text) {
+	return _t(text, 't_')
+}
+
+export function toTraditional(text) {
+	return _t(text, 's_')
+}
+
+export function checkSameChinese(text1, text2) {
+	if (text1.length !== text2.length) {
+		return false
+	}
+	let same = true
+	for (let i = 0; i < text1.length; i++) {
+		const t1 = text1[i]
+		const t2 = text2[i]
+		const stt = stObj[`t_${t1}`]
+		if (stt != null) {
+			if (!(stt === t2 || t1 === t2)) {
+				same = false
+				break
+			}
+		} else {
+			if (t1 !== t2) {
+				same = false
+				break
+			}
+		}
+	}
+	return same
+}
+
+export function checkIncludeText(text, keyword) {
+	return toSimple(text).includes(toSimple(keyword))
 }
