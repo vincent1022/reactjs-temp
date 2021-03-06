@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 import { useLoad, useLocalStorageState } from '@/hooks'
 import { Arr } from '@/lib'
-import exampleTypeEnum from '@/enums/exampleTypeEnum'
+import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'
 
 export const ExampleService = createContext(null)
@@ -10,10 +10,10 @@ function useExampleService() {
 	const [list, setList] = useLocalStorageState('mrt_list', [])
 	const { pending, dispatch } = useLoad(
 		async type => {
-			if (type === exampleTypeEnum.dog) {
+			if (type === EExampleType.DOG) {
 				const res = await axios.get('https://dog.ceo/api/breeds/image/random')
 				return res.data.message
-			} else if (exampleTypeEnum.cat) {
+			} else if (EExampleType.CAT) {
 				const res = await axios.get(
 					'https://api.thecatapi.com/v1/images/search',
 				)

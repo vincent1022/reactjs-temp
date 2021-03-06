@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import style from './style.module.scss'
 import useListService from '@/pages/Example/List/useListService'
 import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
-import exampleTypeEnum from '@/enums/exampleTypeEnum'
+import EExampleType from '@/enums/EExampleType'
 import EditHandler from '@/pages/Example/List/EditHandler'
 
 function List() {
@@ -24,7 +24,7 @@ function List() {
 							<img src={e.url} alt="" />
 						</div>
 						<div className="item__name">
-							{e.type === exampleTypeEnum.cat ? '😸' : '🐕'} {e.name}
+							{e.type === EExampleType.CAT ? '😸' : '🐕'} {e.name}
 						</div>
 						<EditHandler item={e} />
 					</li>

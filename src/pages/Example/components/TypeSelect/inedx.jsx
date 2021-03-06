@@ -1,4 +1,4 @@
-import exampleTypeEnum from '@/enums/exampleTypeEnum'
+import EExampleType from '@/enums/EExampleType'
 import { useEffect, useRef } from 'react'
 
 function TypeSelect({ all, onChange, defaultValue }) {
@@ -15,15 +15,15 @@ function TypeSelect({ all, onChange, defaultValue }) {
 			onChange={ev => onChange && onChange(ev)}
 		>
 			{all && (
-				<option value={exampleTypeEnum.all}>
-					{exampleTypeEnum.t(exampleTypeEnum.all)}
+				<option value={EExampleType.ALL}>
+					{EExampleType.t(EExampleType.ALL)}
 				</option>
 			)}
-			<option value={exampleTypeEnum.dog}>
-				{exampleTypeEnum.t(exampleTypeEnum.dog)}
+			<option value={EExampleType.DOG}>
+				{EExampleType.t(EExampleType.DOG)}
 			</option>
-			<option value={exampleTypeEnum.cat}>
-				{exampleTypeEnum.t(exampleTypeEnum.cat)}
+			<option value={EExampleType.CAT}>
+				{EExampleType.t(EExampleType.CAT)}
 			</option>
 		</select>
 	)

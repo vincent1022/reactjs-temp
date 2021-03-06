@@ -1,13 +1,13 @@
 import { ExampleService } from '../useExampleService'
 import { useContext, useRef, useCallback, useEffect } from 'react'
-import exampleTypeEnum from '../../../enums/exampleTypeEnum'
+import EExampleType from '../../../enums/EExampleType'
 import axios from 'axios'
 
 function useControlService() {
 	const { list, addList, fetchImg } = useContext(ExampleService)
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,
-		type: exampleTypeEnum.dog,
+		type: EExampleType.DOG,
 		name: '',
 	})
 	const nameRef = useRef(null)
