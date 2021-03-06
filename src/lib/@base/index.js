@@ -14,6 +14,7 @@ import {
 	checkSameChinese,
 	checkIncludeText,
 } from './cnTranslate'
+import vTime from './time/vanilla'
 
 export {
 	ClassName,
@@ -30,4 +31,5 @@ export {
 	toTraditional,
 	checkSameChinese,
 	checkIncludeText,
+	vTime,
 }

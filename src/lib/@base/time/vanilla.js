@@ -6,17 +6,17 @@ const yyyyMMdd = 'yyyy-MM-dd'
 const yyyyMMddHHmmss = yyyyMMdd + 'HH:mm:ss'
 
 const newStartDate = afterFormat =>
-	new Date(formatDate(afterFormat, yyyyMMdd) + ' 00:00:00')
+	new Date(format(afterFormat, yyyyMMdd) + ' 00:00:00')
 
 const newEndDate = afterFormat =>
-	new Date(formatDate(afterFormat, yyyyMMdd) + ' 23:59:59')
+	new Date(format(afterFormat, yyyyMMdd) + ' 23:59:59')
 
 const recentDateResult = (increaseDay, format, isStart) => {
 	const date = new Date()
 	const time = date.getTime()
 	const compileDate = new Date(time + increaseDay)
 	const result = isStart ? newStartDate(compileDate) : newEndDate(compileDate)
-	return format === '' ? result : formatDate(result, format)
+	return format === '' ? result : format(result, format)
 }
 
 const weekResult = (increaseDay = 0, format) => {
@@ -27,7 +27,7 @@ const weekResult = (increaseDay = 0, format) => {
 	const start = newStartDate(new Date(time - minusTime))
 	const end = newEndDate(new Date(time - minusTime + day * 6))
 	const result = [start, end]
-	return format === '' ? result : result.map(e => formatDate(e, format))
+	return format === '' ? result : result.map(e => format(e, format))
 }
 
 const monthResult = (isLast, format) => {
@@ -50,10 +50,10 @@ const monthResult = (isLast, format) => {
 		end = new Date(`${year}-${padMonth}-${lastDate} 23:59:59`)
 	}
 	const result = [start, end]
-	return format === '' ? result : result.map(e => formatDate(e, format))
+	return format === '' ? result : result.map(e => format(e, format))
 }
 
-const formatDate = (() => {
+const format = (() => {
 	const days = [
 		'Sunday',
 		'Monday',
@@ -113,29 +113,8 @@ const formatDate = (() => {
 	const s = 's' // 20 -> 20, 8 -> 8
 	const tt = 'tt' // 20 -> PM, 8 -> AM
 	const t = 't' // 20 -> P, 8 -> A
-	const year = date.getFullYear()
-	const strYear = String(year)
-	const lastStrYear = strYear.substr(-2)
-	const month = date.getMonth()
-	const realMonth = month + 1
-	const strRealMonth = String(month + 1)
-	const day = date.getDay()
-	const getDate = date.getDate()
-	const strGetDate = String(getDate)
-	const hour = date.getHours()
-	const strHour = String(hour)
-	const minusHour = hour - 12
-	const computedHour = minusHour > 0 ? minusHour : hour
-	const strComputedHour = String(computedHour)
-	const minute = date.getMinutes()
-	const strMinute = String(minute)
-	const second = date.getSeconds()
-	const strSecond = String(second)
-	const tmCondition = hour > 12
-	const ttm = tmCondition ? 'PM' : 'AM'
-	const tm = tmCondition ? 'P' : 'A'
 
-	function increaseStartZero(number) {
+	function padStartZero(number) {
 		if (typeof number === 'number') {
 			if (number < 10) {
 				return `0${number}`
@@ -151,81 +130,94 @@ const formatDate = (() => {
 		}
 	}
 
-	function replacer(match, $y, $M, $d, $Hh, $m, $s, $t) {
-		if ($y != null) {
-			switch (match) {
-				case yyyy:
-					return strYear
-				case yy:
-					return lastStrYear
-				case $y:
-					return Number(lastStrYear) > 9 ? lastStrYear : strYear.substr(-1)
+	function _format(date, ft) {
+		function replacer(match, $y, $M, $d, $Hh, $m, $s, $t) {
+			if ($y != null) {
+				const year = date.getFullYear()
+				const yearStr = String(year)
+				const lastYearStr = yearStr.substr(-2)
+				switch (match) {
+					case yyyy:
+						return yearStr
+					case yy:
+						return lastYearStr
+					case $y:
+						return Number(lastYearStr) > 9 ? lastYearStr : yearStr.substr(-1)
+				}
+			} else if ($M != null) {
+				const month = date.getMonth()
+				switch (match) {
+					case MMMM:
+						return months[month]
+					case MMM:
+						return abridgeMonths[month]
+					case MM:
+						return padStartZero(month + 1)
+					case M:
+						return String(month + 1)
+				}
+			} else if ($d != null) {
+				const day = date.getDay()
+				const getDate = date.getDate()
+				switch (match) {
+					case dddd:
+						return days[day]
+					case ddd:
+						return abridgeDays[day]
+					case dd:
+						return padStartZero(getDate)
+					case $d:
+						return String(getDate)
+				}
+			} else if ($Hh != null) {
+				const hour = date.getHours()
+				const minusHour = hour - 12
+				const computedHour = minusHour > 0 ? minusHour : hour
+				switch (match) {
+					case HH:
+						return padStartZero(hour)
+					case H:
+						return String(hour)
+					case hh:
+						return padStartZero(computedHour)
+					case h:
+						return String(computedHour)
+				}
+			} else if ($m != null) {
+				const minute = date.getMinutes()
+				switch (match) {
+					case mm:
+						return padStartZero(minute)
+					case m:
+						return String(minute)
+				}
+			} else if ($s != null) {
+				const second = date.getSeconds()
+				switch (match) {
+					case ss:
+						return padStartZero(second)
+					case s:
+						return String(second)
+				}
+			} else if ($t != null) {
+				const hour = date.getHours()
+				const tmCondition = hour > 12
+				const ttm = tmCondition ? 'PM' : 'AM'
+				const tm = tmCondition ? 'P' : 'A'
+				switch (match) {
+					case tt:
+						return ttm
+					case t:
+						return tm
+				}
 			}
-		} else if ($M != null) {
-			switch (match) {
-				case MMMM:
-					return months[month]
-				case MMM:
-					return abridgeMonths[month]
-				case MM:
-					return increaseStartZero(realMonth)
-				case M:
-					return strRealMonth
-			}
-		} else if ($d != null) {
-			switch (match) {
-				case dddd:
-					return days[day]
-				case ddd:
-					return abridgeDays[day]
-				case dd:
-					return increaseStartZero(getDate)
-				case $d:
-					return strGetDate
-			}
-		} else if ($Hh != null) {
-			switch (match) {
-				case HH:
-					return increaseStartZero(hour)
-				case H:
-					return strHour
-				case hh:
-					return increaseStartZero(computedHour)
-				case h:
-					return strComputedHour
-			}
-		} else if ($m != null) {
-			switch (match) {
-				case mm:
-					return increaseStartZero(minute)
-				case m:
-					return strMinute
-			}
-		} else if ($s != null) {
-			switch (match) {
-				case ss:
-					return increaseStartZero(second)
-				case s:
-					return strSecond
-			}
-		} else if ($t != null) {
-			switch (match) {
-				case tt:
-					return ttm
-				case t:
-					return tm
-			}
+			return match
 		}
-		return match
-	}
 
-	/**
-	 * 格式化日期
-	 * @param date [Date|DateString] = new Date()
-	 * @param type [string] = yyyy-MM-dd 採時間轉換規範定義
-	 */
-	return (date = new Date(), type = 'yyyy-MM-dd') => {
-		return type.replace(
+		if (typeof date === 'string') {
+			date = new Date(date)
+		}
+		return ft.replace(
 			new RegExp(
 				`(${yyyy}|${yy}|${y})|(${MMMM}|${MMM}|${MM}|${M})|(${dddd}|${ddd}|${dd}|${d})|(${HH}|${H}|${hh}|${h})|(${mm}|${m})|(${ss}|${s})|(${tt}|${t})`,
 				'g',
@@ -233,6 +225,13 @@ const formatDate = (() => {
 			replacer,
 		)
 	}
+
+	/**
+	 * 格式化日期
+	 * @param date [Date|DateString] = new Date()
+	 * @param type [string] = yyyy-MM-dd 採時間轉換規範定義
+	 */
+	return (date = new Date(), ft = 'yyyy-MM-dd') => _format(date, ft)
 })()
 
 const doingTime = (doingMs = 0) => {
@@ -267,7 +266,7 @@ const stopTimer = timer => {
 const today = (format = '', isStart = false) => {
 	const date = new Date()
 	const result = isStart ? newStartDate(date) : newEndDate(date)
-	return format === '' ? result : formatDate(result, format)
+	return format === '' ? result : format(result, format)
 }
 
 const tomorrow = (format = '', isStart = false) => {
@@ -295,7 +294,7 @@ const lastWeek = (format = '') => {
 }
 
 const recentSevenDay = (format = '') => {
-	return format === '' ? result : result.map(e => formatDate(e, format))
+	return format === '' ? result : result.map(e => format(e, format))
 }
 
 const thisMonth = (format = '') => {
@@ -305,3 +304,9 @@ const thisMonth = (format = '') => {
 const lastMonth = (format = '') => {
 	return monthResult(true, format)
 }
+
+const vTime = {
+	format,
+}
+
+export default vTime
