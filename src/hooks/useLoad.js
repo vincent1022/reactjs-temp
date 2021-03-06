@@ -39,9 +39,9 @@ function useLoad(promiseFun, options) {
 	}, [])
 
 	const dispatch = useCallback(
-		(key = 'run', ...args) => {
+		async (key = 'run', ...args) => {
 			const fun = isFun ? promiseFun : promiseFun[key]
-			pFun(fun, key, ...args)
+			await pFun(fun, key, ...args)
 		},
 		[promiseFun, pFun],
 	)
