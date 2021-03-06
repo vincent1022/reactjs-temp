@@ -1,10 +1,10 @@
-function insertAfter(insert, target) {
-	const parent = target.parentNode
+function insertAfter(from, to) {
+	const parent = to.parentNode
 
-	if (parent.lastChild === target) {
-		parent.appendChild(insert)
+	if (parent.lastChild === to) {
+		parent.appendChild(from)
 	} else {
-		parent.insertBefore(insert, target.nextSibling)
+		parent.insertBefore(from, to.nextSibling)
 	}
 }
 
