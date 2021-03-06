@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-/*
-options
-	append: ref | dom
-	throttle: Boolean default true
-	run: String Boolean default run
-*/
+/**
+ * 加載用鉤子
+ * @param promiseFun Promise<void> | { [key: string]: Promise<void> } 執行的方法
+ * @param options?
+ * 	append: ref | dom
+ * 	throttle: Boolean = true
+ * 	run: String | Boolean | [string, ...any] = run
+ */
 function useLoad(promiseFun, options) {
 	const isFun = useMemo(() => typeof promiseFun === 'function', [promiseFun])
 	const run = useRef(options?.run ?? 'run')
@@ -18,7 +20,7 @@ function useLoad(promiseFun, options) {
 	})
 
 	const pFun = useCallback(
-		async (promiseFun, key) => {
+		async (promiseFun, key, ...args) => {
 			const { current: th } = throttle
 			const { current: tKeys } = throttleKeys
 			if (th) {
@@ -30,9 +32,10 @@ function useLoad(promiseFun, options) {
 
 			try {
 				setState({ error: undefined, pending: true })
-				await promiseFun()
+				await promiseFun(...args)
 				setState({ error: undefined, pending: false })
 			} catch (error) {
+				console.error(error)
 				setState({ error, pending: false })
 			}
 
@@ -44,9 +47,9 @@ function useLoad(promiseFun, options) {
 	)
 
 	const dispatch = useCallback(
-		(key = 'run') => {
+		(key = 'run', ...args) => {
 			const fun = isFun ? promiseFun : promiseFun[key]
-			pFun(fun, key)
+			pFun(fun, key, ...args)
 		},
 		[promiseFun, pFun],
 	)
@@ -54,7 +57,12 @@ function useLoad(promiseFun, options) {
 	useEffect(() => {
 		const { current } = run
 		if (current !== false) {
-			dispatch(current)
+			if (Array.isArray(current)) {
+				const key = current.splice(0, 1)
+				dispatch(key, ...current)
+			} else {
+				dispatch(current)
+			}
 		}
 	}, [])
 
