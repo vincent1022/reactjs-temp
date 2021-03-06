@@ -5,58 +5,38 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
  * @param promiseFun Promise<void> | { [key: string]: Promise<void> } 執行的方法
  * @param options?
  * 	append: ref | dom
- * 	throttle: Boolean = true
  * 	run: String | Boolean | [string, ...any] = run
  */
 function useLoad(promiseFun, options) {
 	const isFun = useMemo(() => typeof promiseFun === 'function', [promiseFun])
 	const run = useRef(options?.run ?? 'run')
 	const append = useRef(options?.append)
-	const throttle = useRef(options?.throttle ?? true)
-	const throttleKeys = useRef({})
+	const throttle = useRef({})
 	const [state, setState] = useState({
 		error: undefined,
 		pending: false,
 	})
 
-	const pFun = useCallback(
-		async (fun, key, ...args) => {
-			const { current: th } = throttle
+	const getRemoveThrottle = useCallback(key => {
+		delete throttle.current[key]
+		return Object.keys(throttle.current).length ? throttle.current : false
+	}, [])
 
-			if (th) {
-				if (throttleKeys.current[key]) {
-					return
-				}
-				throttleKeys.current[key] = true
-			}
+	const pFun = useCallback(async (fun, key, ...args) => {
+		if (throttle.current[key]) {
+			return
+		}
+		throttle.current[key] = true
 
-			try {
-				let pending = th ? throttleKeys.current : true
-				setState({ error: undefined, pending })
-				await fun.call(promiseFun, ...args)
-				if (th) {
-					delete throttleKeys.current[key]
-					const tKeys = Object.keys(throttleKeys.current)
-					pending = tKeys.length ? throttleKeys.current : false
-				} else {
-					pending = false
-				}
-				setState({ error: undefined, pending })
-			} catch (error) {
-				console.error(error)
-				let pending = false
-				if (th) {
-					delete throttleKeys.current[key]
-					const tKeys = Object.keys(throttleKeys.current)
-					if (tKeys.length) {
-						pending = throttleKeys.current
-					}
-				}
-				setState({ error, pending })
-			}
-		},
-		[throttle.current],
-	)
+		try {
+			setState({ error: undefined, pending: throttle.current })
+			await fun.call(promiseFun, ...args)
+			setState({ error: undefined, pending: getRemoveThrottle(key) })
+		} catch (error) {
+			console.error(error)
+			setState({ error, pending: getRemoveThrottle(key) })
+		}
+	}, [])
 
 	const dispatch = useCallback(
 		(key = 'run', ...args) => {
