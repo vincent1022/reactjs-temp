@@ -6,6 +6,7 @@ import stepPrice from './stepPrice'
 import copyText from './copyText'
 import checkMobile from './checkMobile'
 import downloadBlob from './downloadBlob'
+import insertBefore from './insertBefore'
 import insertAfter from './insertAfter'
 import {
 	toSimple,
@@ -23,6 +24,7 @@ export {
 	copyText,
 	checkMobile,
 	downloadBlob,
+	insertBefore,
 	insertAfter,
 	toSimple,
 	toTraditional,
