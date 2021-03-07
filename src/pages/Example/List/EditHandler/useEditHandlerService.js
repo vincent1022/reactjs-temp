@@ -1,10 +1,17 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { ExampleService } from '@/pages/Example/useExampleService'
+import { useBoolean } from 'l8-hooks'
 
 function useEditHandlerService(item) {
 	const { updateItem, removeAtList, fetchImg } = useContext(ExampleService)
-	const [visibleEdit, setVisibleEdit] = useState(false)
-	const [visibleDel, setVisibleDel] = useState(false)
+	const [
+		visibleEdit,
+		{ toggle: onToggleEditModal, setFalse: hideEditModal },
+	] = useBoolean(false)
+	const [
+		visibleDel,
+		{ toggle: onToggleDelModal, setFalse: hideDelModal },
+	] = useBoolean(false)
 	const state = useRef(item)
 
 	useEffect(() => {
@@ -13,9 +20,6 @@ function useEditHandlerService(item) {
 		}
 	}, [item, visibleEdit])
 
-	function onToggleEditModal(visible) {
-		setVisibleEdit(visible)
-	}
 	async function onSubmitEditModal() {
 		const s = state.current
 		const isSameName = s.name === item.name
@@ -26,14 +30,11 @@ function useEditHandlerService(item) {
 		if (!isSameType) {
 			s.url = await fetchImg(s.type)
 		}
-		setVisibleEdit(false)
+		hideEditModal()
 		updateItem(s, item.id)
 	}
-	function onToggleDelModal(visible) {
-		setVisibleDel(visible)
-	}
 	function onSubmitDelModal() {
-		setVisibleDel(false)
+		hideDelModal()
 		removeAtList(item.id)
 	}
 	function onChange(key, ev) {
