@@ -11,8 +11,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "l8-lib": "https://github.com/frank575/js-lib.git#main",
-    "l8-hooks": "https://github.com/frank575/reactjs-hooks.git#main"
+    "l8-lib": "https://github.com/frank575/js-lib.git",
+    "l8-hooks": "https://github.com/frank575/reactjs-hooks.git"
   },
   "devDependencies": {
     "@types/react": "^17.0.2",
