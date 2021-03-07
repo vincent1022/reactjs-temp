@@ -2,14 +2,14 @@ const sec = 1000
 const min = sec * 60
 const hour = min * 60
 const day = hour * 24
-const yyyyMMdd = 'yyyy-MM-dd'
-const yyyyMMddHHmmss = yyyyMMdd + 'HH:mm:ss'
+const ymd = 'yyyy-MM-dd'
+const ymdhms = ymd + 'HH:mm:ss'
 
 const newStartDate = afterFormat =>
-	new Date(format(afterFormat, yyyyMMdd) + ' 00:00:00')
+	new Date(format(afterFormat, ymd) + ' 00:00:00')
 
 const newEndDate = afterFormat =>
-	new Date(format(afterFormat, yyyyMMdd) + ' 23:59:59')
+	new Date(format(afterFormat, ymd) + ' 23:59:59')
 
 const recentDateResult = (increaseDay, format, isStart) => {
 	const date = new Date()
