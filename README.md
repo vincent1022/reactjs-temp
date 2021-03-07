@@ -4,4 +4,4 @@
 
 * [Doc]()  
 * [Doc[l8-lib]](https://github.com/frank575/js-lib.git)
-* [Doc[l8-hooks]](https://github.com/frank575/react-hooks.git)
+* [Doc[l8-hooks]](https://github.com/frank575/reactjs-hooks.git)
