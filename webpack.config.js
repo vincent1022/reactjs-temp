@@ -5,7 +5,6 @@ module.exports = {
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
-			'@baseHooks': path.resolve(__dirname, 'src/hooks/@base'),
 		},
 	},
 }
