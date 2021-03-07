@@ -92,42 +92,12 @@ const format = (() => {
 		'Nov',
 		'Dec',
 	]
-	const yyyy = 'yyyy' // 2020
-	const yy = 'yy' // 2002: 02, 2020: 20
-	const y = 'y' // 2002: 2, 2020: 20
-	const MMMM = 'MMMM' // December
-	const MMM = 'MMM' // Dec
-	const MM = 'MM' // 12: 12, 6: 06
-	const M = 'M' // 12: 12, 6: 6
-	const dddd = 'dddd' // Sunday
-	const ddd = 'ddd' // Sun
-	const dd = 'dd' // 7: 07
-	const d = 'd' // 7: 7
-	const hh = 'hh' // 20: 08, 8: 08
-	const h = 'h' // 20: 8, 8: 8
-	const HH = 'HH' // 20: 20, 8: 08
-	const H = 'H' // 20: 20, 8: 8
-	const mm = 'mm' // 20: 20, 8: 08
-	const m = 'm' // 20: 20, 8: 8
-	const ss = 'ss' // 20: 20, 8: 08
-	const s = 's' // 20: 20, 8: 8
-	const tt = 'tt' // 20: PM, 8: AM
-	const t = 't' // 20: P, 8: A
 
 	function padStartZero(number) {
-		if (typeof number === 'number') {
-			if (number < 10) {
-				return `0${number}`
-			} else {
-				return String(number)
-			}
-		} else {
-			if (number.length < 2) {
-				return `0${number}`
-			} else {
-				return number
-			}
+		if (number < 10) {
+			return `0${number}`
 		}
+		return number
 	}
 
 	function _format(date, ft) {
@@ -137,36 +107,47 @@ const format = (() => {
 				const yearStr = String(year)
 				const lastYearStr = yearStr.substr(-2)
 				switch (match) {
-					case yyyy:
+					// 2020
+					case 'yyyy':
 						return yearStr
-					case yy:
+					// 2002: 02, 2020: 20
+					case 'yy':
 						return lastYearStr
-					case $y:
+					// 2002: 2, 2020: 20
+					case 'y':
 						return Number(lastYearStr) > 9 ? lastYearStr : yearStr.substr(-1)
 				}
 			} else if ($M != null) {
 				const month = date.getMonth()
 				switch (match) {
-					case MMMM:
+					// December
+					case 'MMMM':
 						return months[month]
-					case MMM:
+					// Dec
+					case 'MMM':
 						return abridgeMonths[month]
-					case MM:
+					// 12: 12, 6: 06
+					case 'MM':
 						return padStartZero(month + 1)
-					case M:
+					// 12: 12, 6: 6
+					case 'M':
 						return String(month + 1)
 				}
 			} else if ($d != null) {
 				const day = date.getDay()
 				const getDate = date.getDate()
 				switch (match) {
-					case dddd:
+					// Sunday
+					case 'dddd':
 						return days[day]
-					case ddd:
+					// Sun
+					case 'ddd':
 						return abridgeDays[day]
-					case dd:
+					// 7: 07
+					case 'dd':
 						return padStartZero(getDate)
-					case $d:
+					// 7: 7
+					case 'd':
 						return String(getDate)
 				}
 			} else if ($Hh != null) {
@@ -174,41 +155,51 @@ const format = (() => {
 				const minusHour = hour - 12
 				const computedHour = minusHour > 0 ? minusHour : hour
 				switch (match) {
-					case HH:
+					// 20: 20, 8: 08
+					case 'HH':
 						return padStartZero(hour)
-					case H:
+					// 20: 20, 8: 8
+					case 'H':
 						return String(hour)
-					case hh:
+					// 20: 08, 8: 08
+					case 'hh':
 						return padStartZero(computedHour)
-					case h:
+					// 20: 8, 8: 8
+					case 'h':
 						return String(computedHour)
 				}
 			} else if ($m != null) {
 				const minute = date.getMinutes()
 				switch (match) {
-					case mm:
+					// 20: 20, 8: 08
+					case 'mm':
 						return padStartZero(minute)
-					case m:
+					// 20: 20, 8: 8
+					case 'm':
 						return String(minute)
 				}
 			} else if ($s != null) {
 				const second = date.getSeconds()
 				switch (match) {
-					case ss:
+					// 20: 20, 8: 08
+					case 'ss':
 						return padStartZero(second)
-					case s:
+					// 20: 20, 8: 8
+					case 's':
 						return String(second)
 				}
 			} else if ($t != null) {
 				const hour = date.getHours()
-				const tmCondition = hour > 12
-				const _tt = tmCondition ? 'PM' : 'AM'
-				const _t = tmCondition ? 'P' : 'A'
+				const cond = hour > 12
+				const tt = cond ? 'PM' : 'AM'
+				const t = cond ? 'P' : 'A'
 				switch (match) {
-					case tt:
-						return _tt
-					case t:
-						return _t
+					// 20: PM, 8: AM
+					case 'tt':
+						return tt
+					// 20: P, 8: A
+					case 't':
+						return t
 				}
 			}
 			return match
@@ -218,10 +209,7 @@ const format = (() => {
 			date = new Date(date)
 		}
 		return ft.replace(
-			new RegExp(
-				`(${yyyy}|${yy}|${y})|(${MMMM}|${MMM}|${MM}|${M})|(${dddd}|${ddd}|${dd}|${d})|(${HH}|${H}|${hh}|${h})|(${mm}|${m})|(${ss}|${s})|(${tt}|${t})`,
-				'g',
-			),
+			/(yyyy|yy|y)|(MMMM|MMM|MM|M)|(dddd|ddd|dd|d)|(HH|H|hh|h)|(mm|m)|(ss|s)|(tt|t)/g,
 			replacer,
 		)
 	}
