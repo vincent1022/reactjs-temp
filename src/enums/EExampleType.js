@@ -1,4 +1,4 @@
-import { Enum } from '@baseLib'
+import { Enum } from 'l8Lib'
 
 const EExampleType = {
 	ALL: 'all',
