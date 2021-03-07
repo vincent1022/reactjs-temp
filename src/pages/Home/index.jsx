@@ -7,7 +7,7 @@ function Home() {
 			<div className={'logo'}>
 				<img src="/src/assets/logo.svg" alt="" />
 			</div>
-			<div className={'title'}>MyReactTemplate</div>
+			<div className={'title'}>L8ReactjsTemplate</div>
 			<div className={'tip'}>
 				範例
 				<Link to={'/dash/example'}>
