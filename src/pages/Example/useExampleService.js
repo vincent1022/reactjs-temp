@@ -6,22 +6,19 @@ import axios from 'axios'
 
 export const ExampleService = createContext(null)
 
+async function fetchPicture(type) {
+	if (type === EExampleType.DOG) {
+		const res = await axios.get('https://dog.ceo/api/breeds/image/random')
+		return res.data.message
+	} else if (type === EExampleType.CAT) {
+		const res = await axios.get('https://api.thecatapi.com/v1/images/search')
+		return res.data[0].url
+	}
+}
+
 function useExampleService() {
 	const [list, setList] = useLocalStorageState('mrt_list', [])
-	const { pending, dispatch } = useLoad(
-		async type => {
-			if (type === EExampleType.DOG) {
-				const res = await axios.get('https://dog.ceo/api/breeds/image/random')
-				return res.data.message
-			} else if (EExampleType.CAT) {
-				const res = await axios.get(
-					'https://api.thecatapi.com/v1/images/search',
-				)
-				return res.data[0].url
-			}
-		},
-		{ run: false },
-	)
+	const { pending, run: fetchImg } = useLoad(fetchPicture, { run: false })
 
 	const getItemIndexAndCall = (id, callback) => {
 		const index = list.findIndex(e => e.id === id)
@@ -44,7 +41,7 @@ function useExampleService() {
 		updateItem,
 		removeAtList,
 		pending,
-		fetchImg: dispatch,
+		fetchImg,
 	}
 }
 
