@@ -525,9 +525,9 @@ json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
-"l8-lib@https://github.com/frank575/my-front-lib.git#js0.0.0":
+"l8-lib@https://github.com/frank575/js-lib.git":
   version "0.0.0"
-  resolved "https://github.com/frank575/my-front-lib.git#d5f29918d1be6ce9c0a3c32d2374e2770cbef19b"
+  resolved "https://github.com/frank575/js-lib.git#e3951ee5830648aa6d494339ab1a97647ce90f83"
 
 lodash@^4.17.19:
   version "4.17.21"
