@@ -526,12 +526,12 @@ json5@^2.1.2:
     minimist "^1.2.5"
 
 "l8-hooks@https://github.com/frank575/reactjs-hooks.git":
-  version "1.0.0"
-  resolved "https://github.com/frank575/reactjs-hooks.git#03fe505321dcf7f2458b2eeebf8267877142ef59"
+  version "0.1.0"
+  resolved "https://github.com/frank575/reactjs-hooks.git#66ff5fc5fc30350d7fee850b34a6f590f9e1c37a"
 
 "l8-lib@https://github.com/frank575/js-lib.git":
   version "0.0.0"
-  resolved "https://github.com/frank575/js-lib.git#e3951ee5830648aa6d494339ab1a97647ce90f83"
+  resolved "https://github.com/frank575/js-lib.git#a6bf871aeed956b11f6333d8332d938b140408b9"
 
 lodash@^4.17.19:
   version "4.17.21"
