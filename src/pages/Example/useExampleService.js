@@ -18,7 +18,7 @@ async function fetchPicture(type) {
 
 function useExampleService() {
 	const [list, setList] = useLocalStorageState('mrt_list', [])
-	const { pending, run: fetchImg } = useLoad(fetchPicture, { run: false })
+	const { pending, exec } = useLoad(fetchPicture, { run: false })
 
 	const getItemIndexAndCall = (id, callback) => {
 		const index = list.findIndex(e => e.id === id)
@@ -41,7 +41,7 @@ function useExampleService() {
 		updateItem,
 		removeAtList,
 		pending,
-		fetchImg,
+		fetchImg: exec.run,
 	}
 }
 
