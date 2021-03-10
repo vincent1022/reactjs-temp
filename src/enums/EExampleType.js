@@ -1,4 +1,4 @@
-import { Enum } from 'l8-lib'
+import { Enum } from 'js575/lib'
 
 const EExampleType = Enum({
 	ALL: ['all', '全部'],

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { ExampleService } from '@/pages/Example/useExampleService'
-import { useBoolean } from 'l8-hooks'
+import { useBoolean } from 'js575/react/hooks'
 
 function useEditHandlerService(item) {
 	const { updateItem, removeAtList, fetchImg } = useContext(ExampleService)
