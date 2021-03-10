@@ -42,11 +42,6 @@ function exampleService() {
 	}
 }
 
-// 為了做假 modal 用，又不想到 index.html 寫，所以出此下策
-const modal = document.createElement('div')
-modal.id = 'example-modal'
-document.body.append(modal)
-
 export const {
 	Provider: ExampleProvider,
 	inject: injectExampleService,
