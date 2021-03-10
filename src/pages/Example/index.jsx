@@ -1,23 +1,22 @@
 import style from './style.module.scss'
-import useExampleService, {
-	ExampleService,
+import {
+	ExampleProvider,
+	injectExampleService,
 } from '@/pages/Example/useExampleService'
 import Control from '@/pages/Example/Control'
 import List from '@/pages/Example/List'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
 
 function Example() {
-	const exampleService = useExampleService()
 	return (
-		<ExampleService.Provider value={exampleService}>
+		<ExampleProvider>
 			<Content />
-		</ExampleService.Provider>
+		</ExampleProvider>
 	)
 }
 
 function Content() {
-	const { pending } = useContext(ExampleService)
+	const { pending } = injectExampleService()
 	return (
 		<div className={style.root}>
 			{pending && <div className="loading" />}

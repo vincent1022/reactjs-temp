@@ -1,10 +1,7 @@
-import { createContext } from 'react'
-import { useLoad, useLocalStorageState } from 'js575/react/hooks'
+import { useLoad, useLocalStorageState, useProvider } from 'js575/react/hooks'
 import { Arr } from 'js575/lib'
 import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'
-
-export const ExampleService = createContext(null)
 
 async function fetchPicture(type) {
 	if (type === EExampleType.DOG) {
@@ -16,7 +13,7 @@ async function fetchPicture(type) {
 	}
 }
 
-function useExampleService() {
+function exampleService() {
 	const [list, setList] = useLocalStorageState('mrt_list', [])
 	const { pending, exec } = useLoad(fetchPicture, { run: false })
 
@@ -50,4 +47,7 @@ const modal = document.createElement('div')
 modal.id = 'example-modal'
 document.body.append(modal)
 
-export default useExampleService
+export const {
+	Provider: ExampleProvider,
+	inject: injectExampleService,
+} = useProvider(exampleService)
