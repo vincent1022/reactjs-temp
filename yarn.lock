@@ -521,7 +521,7 @@ isexe@^2.0.0:
 
 js575@frank575/js575:
   version "0.0.0"
-  resolved "https://codeload.github.com/frank575/js575/tar.gz/2b7b00d994ca95e3fccb0f8dbeb6521d42ea208f"
+  resolved "https://codeload.github.com/frank575/js575/tar.gz/a44d98b4f79484afdd6ecf9743676341ad027b0a"
 
 jsesc@^2.5.1:
   version "2.5.2"
