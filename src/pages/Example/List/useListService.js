@@ -1,9 +1,9 @@
-import { ExampleService } from '../useExampleService'
-import { useState, useContext, useMemo } from 'react'
+import { injectExampleService } from '../useExampleService'
+import { useState, useMemo } from 'react'
 import EExampleType from '../../../enums/EExampleType'
 
 function useListService() {
-	const { list } = useContext(ExampleService)
+	const { list } = injectExampleService()
 	const [type, setType] = useState(EExampleType.ALL)
 	const onChangeType = ev => {
 		setType(ev.target.value)

@@ -1,7 +1,7 @@
-import ReactDOM from 'react-dom'
 import { useMemo } from 'react'
 import style from './style.module.scss'
 import { ClassName } from 'js575/lib'
+import { useTeleport } from 'js575/react/hooks'
 
 function Modal({
 	visible,
@@ -11,7 +11,7 @@ function Modal({
 	children,
 	noContent = false,
 }) {
-	return ReactDOM.createPortal(
+	return useTeleport(
 		useMemo(
 			() =>
 				visible ? (
@@ -45,7 +45,6 @@ function Modal({
 				) : null,
 			[visible, children],
 		),
-		document.getElementById('example-modal'),
 	)
 }
 

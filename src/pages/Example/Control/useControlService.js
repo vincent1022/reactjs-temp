@@ -1,10 +1,9 @@
-import { ExampleService } from '../useExampleService'
-import { useContext, useRef, useCallback, useEffect } from 'react'
+import { injectExampleService } from '../useExampleService'
+import { useRef, useCallback, useEffect } from 'react'
 import EExampleType from '../../../enums/EExampleType'
-import axios from 'axios'
 
 function useControlService() {
-	const { list, addList, fetchImg } = useContext(ExampleService)
+	const { list, addList, fetchImg } = injectExampleService()
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,
 		type: EExampleType.DOG,
