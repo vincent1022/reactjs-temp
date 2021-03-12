@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { injectExampleService } from '@/pages/Example/useExampleService'
-import { useBoolean } from 'js575/react/hooks'
+import { useBoolean } from 'jsl/react/hooks'
 
 function useEditHandlerService(item) {
 	const { updateItem, removeAtList, fetchImg } = injectExampleService()

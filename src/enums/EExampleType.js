@@ -1,4 +1,4 @@
-import { Enum } from 'js575/lib'
+import { Enum } from 'jsl'
 
 const EExampleType = Enum({
 	ALL: ['all', '全部'],

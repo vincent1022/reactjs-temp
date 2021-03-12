@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import style from './style.module.scss'
-import { ClassName } from 'js575/lib'
-import { useTeleport } from 'js575/react/hooks'
+import { ClassName } from 'jsl'
+import { useTeleport } from 'jsl/react/hooks'
 
 function Modal({
 	visible,
