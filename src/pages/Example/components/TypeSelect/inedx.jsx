@@ -1,13 +1,9 @@
 import EExampleType from '@/enums/EExampleType'
 import { useEffect, useRef } from 'react'
+import useTypeSelectService from '@/pages/Example/components/TypeSelect/useTypeSelectService'
 
-function TypeSelect({ all, onChange, defaultValue }) {
-	const selectRef = useRef(null)
-	useEffect(() => {
-		if (selectRef.current != null && defaultValue != null) {
-			selectRef.current.value = defaultValue
-		}
-	}, [defaultValue, selectRef.current])
+function TypeSelect(props) {
+	const { selectRef, onChange, all } = useTypeSelectService(props)
 	return (
 		<select
 			ref={selectRef}
