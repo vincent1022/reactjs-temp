@@ -17,11 +17,11 @@ function Example() {
 }
 
 function Content() {
-	const { pending } = injectExampleService()
+	const { loading } = injectExampleService()
 	return useMemo(
 		() => (
 			<div className={style.root}>
-				{pending && <div className="loading" />}
+				{loading && <div className="loading" />}
 				<div className="title">
 					<Link className="title__link" to={'/'}>
 						回首頁
@@ -33,7 +33,7 @@ function Content() {
 				<List />
 			</div>
 		),
-		[pending],
+		[loading],
 	)
 }
 
