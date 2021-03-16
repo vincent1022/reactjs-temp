@@ -2,7 +2,7 @@ import { injectExampleService } from '../useExampleService'
 import { useRef, useCallback, useEffect } from 'react'
 import EExampleType from '../../../enums/EExampleType'
 
-function useControlService() {
+const useControlService = () => {
 	const { list, addList, fetchImg } = injectExampleService()
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,

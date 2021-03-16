@@ -4,7 +4,7 @@ import style from './style.module.scss'
 import Modal from '@/pages/Example/components/Modal'
 import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
 
-function EditHandler({ item }) {
+const EditHandler = ({ item }) => {
 	const {
 		visibleEdit,
 		onToggleEditModal,

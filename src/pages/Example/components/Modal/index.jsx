@@ -3,14 +3,14 @@ import style from './style.module.scss'
 import { ClassName } from 'jsl'
 import { useTeleport } from 'jsl/react/hooks'
 
-function Modal({
+const Modal =({
 	visible,
 	title,
 	onCancel,
 	onSubmit,
 	children,
 	noContent = false,
-}) {
+}) => {
 	return useTeleport(
 		useMemo(
 			() =>

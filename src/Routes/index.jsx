@@ -5,7 +5,7 @@ import LazyLoading from '@/Routes/components/LazyLoading'
 const Home = lazy(() => import('@/pages/Home'))
 const NotFound = lazy(() => import('./components/NotFound'))
 
-function Routes() {
+const Routes = () => {
 	return (
 		<BrowserRouter>
 			<Suspense fallback={<LazyLoading />}>

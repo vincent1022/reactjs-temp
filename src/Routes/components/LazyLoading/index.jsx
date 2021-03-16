@@ -1,6 +1,6 @@
 import style from './style.module.scss'
 
-function LazyLoading() {
+const LazyLoading = () => {
 	return <div className={style.root}>Loading...</div>
 }
 

@@ -25,7 +25,7 @@ const apis = {
 	login: params => axios.post('login', params),
 }
 
-function installApi() {
+const installApi = () => {
 	window.$apis = apis
 }
 

@@ -8,7 +8,7 @@ import List from '@/pages/Example/List'
 import { Link } from 'react-router-dom'
 import { useMemo } from 'react'
 
-function Example() {
+const Example = () => {
 	return (
 		<ExampleProvider>
 			<Content />
@@ -16,7 +16,7 @@ function Example() {
 	)
 }
 
-function Content() {
+const Content = () => {
 	const { loading } = injectExampleService()
 	return useMemo(
 		() => (

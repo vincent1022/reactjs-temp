@@ -1,7 +1,7 @@
 import styles from './style.module.scss'
 import { Link } from 'react-router-dom'
 
-function Home() {
+const Home = () => {
 	return (
 		<div className={styles.root}>
 			<div className={'logo'}>

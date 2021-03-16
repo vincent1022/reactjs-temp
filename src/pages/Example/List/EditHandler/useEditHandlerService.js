@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { injectExampleService } from '@/pages/Example/useExampleService'
 import { useBoolean } from 'jsl/react/hooks'
 
-function useEditHandlerService(item) {
+const useEditHandlerService = item => {
 	const { updateItem, removeAtList, fetchImg } = injectExampleService()
 	const [
 		visibleEdit,
@@ -20,7 +20,7 @@ function useEditHandlerService(item) {
 		}
 	}, [item, visibleEdit])
 
-	async function onSubmitEditModal() {
+	const onSubmitEditModal = async () => {
 		const s = state.current
 		const isSameName = s.name === item.name
 		const isSameType = s.type === item.type
@@ -33,11 +33,11 @@ function useEditHandlerService(item) {
 		hideEditModal()
 		updateItem(s, item.id)
 	}
-	function onSubmitDelModal() {
+	const onSubmitDelModal = () => {
 		hideDelModal()
 		removeAtList(item.id)
 	}
-	function onChange(key, ev) {
+	const onChange = (key, ev) => {
 		state.current[key] = ev.target.value
 	}
 

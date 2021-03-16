@@ -1,8 +1,7 @@
 import EExampleType from '@/enums/EExampleType'
-import { useEffect, useRef } from 'react'
 import useTypeSelectService from '@/pages/Example/components/TypeSelect/useTypeSelectService'
 
-function TypeSelect(props) {
+const TypeSelect = props => {
 	const { selectRef, onChange, all } = useTypeSelectService(props)
 	return (
 		<select

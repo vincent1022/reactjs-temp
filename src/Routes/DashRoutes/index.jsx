@@ -2,7 +2,7 @@ import { lazy } from 'react'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 const Example = lazy(() => import('@/pages/Example'))
 
-function DashRoutes() {
+const DashRoutes = () => {
 	const { path } = useRouteMatch()
 	return (
 		<Switch>

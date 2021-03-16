@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-function useTypeSelectService({ all, onChange, defaultValue }) {
+const useTypeSelectService = ({ all, onChange, defaultValue }) => {
 	const selectRef = useRef(null)
 
 	useEffect(() => {

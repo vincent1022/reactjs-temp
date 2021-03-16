@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import style from './style.module.scss'
 import useControlService from '@/pages/Example/Control/useControlService'
 import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
-function Control() {
+const Control = () => {
 	const { onChange, onKeyDown, onCreate, nameRef } = useControlService()
 	return useMemo(
 		() => (

@@ -5,7 +5,7 @@ import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
 import EExampleType from '@/enums/EExampleType'
 import EditHandler from '@/pages/Example/List/EditHandler'
 
-function List() {
+const List = () => {
 	const { filterList, onChangeType } = useListService()
 	return useMemo(
 		() => (

@@ -3,7 +3,7 @@ import { Arr } from 'jsl'
 import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'
 
-async function fetchPicture(type) {
+const fetchPicture = async type => {
 	if (type === EExampleType.DOG) {
 		const res = await axios.get('https://dog.ceo/api/breeds/image/random')
 		return res.data.message
@@ -13,7 +13,7 @@ async function fetchPicture(type) {
 	}
 }
 
-function exampleService() {
+const exampleService = () => {
 	const [list, setList] = useLocalStorageState('mrt_list', [])
 	const { loading, exec } = useLoad(fetchPicture, { run: false })
 
