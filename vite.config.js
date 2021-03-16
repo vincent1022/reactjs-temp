@@ -19,7 +19,6 @@ for (const file of envFiles) {
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [reactRefresh()],
-	publicDir: 'src/assets',
 	esbuild: {
 		jsxInject: `import React from 'react'`,
 	},

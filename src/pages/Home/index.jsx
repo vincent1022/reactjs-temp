@@ -5,7 +5,7 @@ const Home = () => {
 	return (
 		<div className={styles.root}>
 			<div className={'logo'}>
-				<img src="/src/assets/logo.svg" alt="" />
+				<img src="logo.svg" alt="" />
 			</div>
 			<div className={'title'}>L8ReactjsTemplate</div>
 			<div className={'tip'}>
