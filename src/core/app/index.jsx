@@ -1,22 +1,24 @@
-import ReactDOM from 'react-dom'
-import { routes } from '@/core/app'
 import { Suspense } from 'react'
-import LazyLoading from '@/components/LazyLoading'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import '@/core/style/index.css'
+import './devLog'
+import { Routes } from './routes'
+import LazyLoading from '@/components/LazyLoading'
 import NotFound from '@/components/NotFound'
 
-ReactDOM.render(
-	<React.StrictMode>
+const App = () => {
+	return (
 		<BrowserRouter>
 			<Suspense fallback={<LazyLoading />}>
 				<Switch>
-					{routes.create()}
+					{Routes}
 					<Route>
 						<NotFound />
 					</Route>
 				</Switch>
 			</Suspense>
 		</BrowserRouter>
-	</React.StrictMode>,
-	document.getElementById('root'),
-)
+	)
+}
+
+export { App }
