@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import { Routes } from '@/core/app'
+import { routes } from '@/core/app'
 import { Suspense } from 'react'
 import LazyLoading from '@/components/LazyLoading'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -10,7 +10,7 @@ ReactDOM.render(
 		<BrowserRouter>
 			<Suspense fallback={<LazyLoading />}>
 				<Switch>
-					{Routes}
+					{routes.create()}
 					<Route>
 						<NotFound />
 					</Route>

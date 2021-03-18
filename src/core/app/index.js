@@ -1,5 +1,5 @@
 import '@/core/style/index.css'
 import './devLog'
-import { Routes } from './routes'
+import routes from './routes'
 
-export { Routes }
+export { routes }

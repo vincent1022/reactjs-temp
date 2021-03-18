@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { matchRoutes } from 'jsl/react/lib'
+import { routerGenerator } from 'jsl/react/lib'
 
 const Home = lazy(() => import('@/pages/Home'))
 const Example = lazy(() => import('@/pages/Example'))
@@ -29,4 +29,4 @@ const routes = [
 	},
 ]
 
-export const { Routes } = matchRoutes(routes)
+export default routerGenerator(routes)
