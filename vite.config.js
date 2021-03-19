@@ -20,7 +20,7 @@ for (const file of envFiles) {
 export default defineConfig({
 	plugins: [reactRefresh()],
 	esbuild: {
-		jsxInject: `import React from 'react'`,
+	// 	jsxInject: `import React from 'react'`,
 	},
 	resolve: {
 		alias: {

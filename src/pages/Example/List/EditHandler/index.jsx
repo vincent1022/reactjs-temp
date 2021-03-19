@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import useEditHandlerService from '@/pages/Example/List/EditHandler/useEditHandlerService'
 import style from './style.module.scss'
 import Modal from '@/pages/Example/components/Modal'

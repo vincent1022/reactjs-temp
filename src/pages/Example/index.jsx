@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react'
 import style from './style.module.scss'
 import {
 	ExampleProvider,
@@ -6,7 +7,6 @@ import {
 import Control from '@/pages/Example/Control'
 import List from '@/pages/Example/List'
 import { Link } from 'react-router-dom'
-import { useMemo } from 'react'
 
 const Example = () => {
 	return (

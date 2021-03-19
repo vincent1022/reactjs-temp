@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { Router } from 'react-router'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import '@/core/style/index.css'
