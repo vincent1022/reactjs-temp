@@ -1,7 +1,8 @@
-import { useLoad, useLocalStorageState, useProvider } from 'jsl/react/hooks'
+import { useLoad, useProvider } from 'jsl/react/hooks'
 import { Arr } from 'jsl'
 import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'
+import { useLocalStorageState } from 'ahooks'
 
 const fetchPicture = async type => {
 	if (type === EExampleType.DOG) {

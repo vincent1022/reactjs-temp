@@ -7,33 +7,33 @@ import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
 const EditHandler = ({ item }) => {
 	const {
 		visibleEdit,
-		onToggleEditModal,
+		editModalFun,
 		onSubmitEditModal,
 		visibleDel,
-		onToggleDelModal,
+		delModalFun,
 		onSubmitDelModal,
 		onChange,
 	} = useEditHandlerService(item)
 	return useMemo(
 		() => (
 			<div className={style.root}>
-				<button className={'edit-btn'} onClick={() => onToggleEditModal(true)}>
+				<button className={'edit-btn'} onClick={editModalFun.toggle}>
 					編輯🔨
 				</button>
-				<button className={'del-btn'} onClick={() => onToggleDelModal(true)}>
+				<button className={'del-btn'} onClick={delModalFun.toggle}>
 					刪除❌
 				</button>
 				<Modal
 					title={`確定要刪除勇者 ${item.name} 嗎？`}
 					visible={visibleDel}
-					onCancel={() => onToggleDelModal(false)}
+					onCancel={delModalFun.setFalse}
 					onSubmit={onSubmitDelModal}
 					noContent
 				/>
 				<Modal
 					title={'編輯勇者'}
 					visible={visibleEdit}
-					onCancel={() => onToggleEditModal(false)}
+					onCancel={editModalFun.setFalse}
 					onSubmit={onSubmitEditModal}
 				>
 					<div className={style.modalContent}>

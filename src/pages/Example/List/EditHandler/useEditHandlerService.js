@@ -1,17 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { injectExampleService } from '@/pages/Example/useExampleService'
-import { useBoolean } from 'jsl/react/hooks'
+import { useBoolean } from 'ahooks'
 
 const useEditHandlerService = item => {
 	const { updateItem, removeAtList, fetchImg } = injectExampleService()
-	const [
-		visibleEdit,
-		{ toggle: onToggleEditModal, setFalse: hideEditModal },
-	] = useBoolean(false)
-	const [
-		visibleDel,
-		{ toggle: onToggleDelModal, setFalse: hideDelModal },
-	] = useBoolean(false)
+	const [visibleEdit, editModalFun] = useBoolean(false)
+	const [visibleDel, delModalFun] = useBoolean(false)
 	const state = useRef(item)
 
 	useEffect(() => {
@@ -30,11 +24,11 @@ const useEditHandlerService = item => {
 		if (!isSameType) {
 			s.url = await fetchImg(s.type)
 		}
-		hideEditModal()
+		editModalFun.setFalse()
 		updateItem(s, item.id)
 	}
 	const onSubmitDelModal = () => {
-		hideDelModal()
+		delModalFun.setFalse()
 		removeAtList(item.id)
 	}
 	const onChange = (key, ev) => {
@@ -43,10 +37,10 @@ const useEditHandlerService = item => {
 
 	return {
 		visibleEdit,
-		onToggleEditModal,
+		editModalFun,
 		onSubmitEditModal,
 		visibleDel,
-		onToggleDelModal,
+		delModalFun,
 		onSubmitDelModal,
 		removeAtList,
 		onChange,

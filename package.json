@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "ahooks": "^2.9.6",
     "axios": "^0.21.1",
     "jsl": "frank575/jsl",
     "react": "^17.0.1",

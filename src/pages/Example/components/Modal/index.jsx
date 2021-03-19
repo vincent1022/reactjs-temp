@@ -1,9 +1,12 @@
+import ReactDOM from 'react-dom'
 import { useMemo } from 'react'
 import style from './style.module.scss'
 import { ClassName } from 'jsl'
-import { useTeleport } from 'jsl/react/hooks'
 
-const Modal =({
+const portalDom = document.createElement('div')
+document.body.append(portalDom)
+
+const Modal = ({
 	visible,
 	title,
 	onCancel,
@@ -11,7 +14,7 @@ const Modal =({
 	children,
 	noContent = false,
 }) => {
-	return useTeleport(
+	return ReactDOM.createPortal(
 		useMemo(
 			() =>
 				visible ? (
@@ -45,6 +48,7 @@ const Modal =({
 				) : null,
 			[visible, children],
 		),
+		portalDom,
 	)
 }
 
