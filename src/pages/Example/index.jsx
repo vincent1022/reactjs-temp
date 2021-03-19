@@ -7,14 +7,6 @@ import {
 import Control from '@/pages/Example/Control'
 import List from '@/pages/Example/List'
 
-const Example = () => {
-	return (
-		<ExampleProvider>
-			<Content />
-		</ExampleProvider>
-	)
-}
-
 const Content = () => {
 	const { loading } = injectExampleService()
 	return useMemo(
@@ -26,6 +18,16 @@ const Content = () => {
 			</div>
 		),
 		[loading],
+	)
+}
+
+const Example = () => {
+	$devLog('warn', '>>> 可以使用 $devLog 在開發環境下隨意 log <<<')
+	$devLog('>>> Welcome to dash/example <<<')
+	return (
+		<ExampleProvider>
+			<Content />
+		</ExampleProvider>
 	)
 }
 
