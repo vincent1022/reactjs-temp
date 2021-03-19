@@ -17,9 +17,6 @@ const routes = [
 			{
 				path: 'example',
 				component: Example,
-				meta: {
-					hello: 'world',
-				},
 			},
 		],
 	},
