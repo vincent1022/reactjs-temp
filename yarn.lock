@@ -526,7 +526,7 @@ jsesc@^2.5.1:
 
 jsl@frank575/jsl:
   version "0.0.0"
-  resolved "https://codeload.github.com/frank575/jsl/tar.gz/1b4ef501c7fce130238e8a37849990735b265c9b"
+  resolved "https://codeload.github.com/frank575/jsl/tar.gz/0915b33685054a079b79c9c2efe47ca4a4ed45b7"
 
 json5@^2.1.2:
   version "2.2.0"
