@@ -1,8 +1,10 @@
 import { lazy } from 'react'
+import { createBrowserHistory } from 'history'
 import { createRoutes } from 'jsl/react/lib'
 const Home = lazy(() => import('@/pages/Home'))
 const Example = lazy(() => import('@/pages/Example'))
 
+const history = createBrowserHistory()
 const routes = [
 	{
 		path: '/',
@@ -23,4 +25,5 @@ const routes = [
 	},
 ]
 
-export const { Routes } = createRoutes(routes)
+const { Routes } = createRoutes(routes)
+export { history, Routes }

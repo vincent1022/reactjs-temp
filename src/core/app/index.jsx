@@ -1,23 +1,25 @@
 import { Suspense } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router } from 'react-router'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import '@/core/style/index.css'
 import './devLog'
-import { Routes } from './routes'
+import { history, Routes } from './routes'
 import LazyLoading from '@/components/LazyLoading'
 import NotFound from '@/components/NotFound'
 
 const App = () => {
 	return (
-		<BrowserRouter>
+		<Router history={history}>
 			<Suspense fallback={<LazyLoading />}>
 				<Switch>
 					{Routes}
-					<Route>
+					<Route path={'/404'}>
 						<NotFound />
 					</Route>
+					<Redirect to="/404" />
 				</Switch>
 			</Suspense>
-		</BrowserRouter>
+		</Router>
 	)
 }
 
