@@ -6,14 +6,6 @@ import {
 	LayoutProvider,
 } from '@/components/Layout/useLayoutService'
 
-const Layout = ({ children }) => {
-	return (
-		<LayoutProvider>
-			<Content>{children}</Content>
-		</LayoutProvider>
-	)
-}
-
 const Content = ({ children }) => {
 	const { title } = injectLayout()
 	return useMemo(
@@ -29,6 +21,14 @@ const Content = ({ children }) => {
 			</main>
 		),
 		[title],
+	)
+}
+
+const Layout = ({ children }) => {
+	return (
+		<LayoutProvider>
+			<Content>{children}</Content>
+		</LayoutProvider>
 	)
 }
 
