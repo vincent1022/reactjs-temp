@@ -1,6 +1,7 @@
 import { injectExampleService } from '../useExampleService'
 import { useRef, useCallback, useEffect } from 'react'
 import EExampleType from '../../../enums/EExampleType'
+import { useKeyPress } from 'ahooks'
 
 const useControlService = () => {
 	const { list, addList, fetchImg } = injectExampleService()
@@ -13,11 +14,9 @@ const useControlService = () => {
 	const onChange = key => ev => (state.current[key] = ev.target.value)
 	const onCreate = useCallback(async () => {
 		const { id, type, name } = state.current
-
 		if (typeof name === 'string' && name.trim() === '') {
 			return alert('勇者名稱不得為空')
 		}
-
 		const url = await fetchImg(type)
 		addList({
 			id,
@@ -25,7 +24,6 @@ const useControlService = () => {
 			name,
 			type,
 		})
-
 		state.current.id++
 		if (nameRef.current) {
 			nameRef.current.value = ''
@@ -33,9 +31,11 @@ const useControlService = () => {
 		}
 	}, [state.current])
 	const onKeyDown = ev => ev.key === 'Enter' && onCreate()
+	useKeyPress('ctrl.q', () => nameRef.current?.focus())
 	useEffect(() => {
-		nameRef.current.focus()
+		nameRef.current?.focus()
 	}, [nameRef.current])
+
 	return {
 		onChange,
 		onKeyDown,

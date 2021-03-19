@@ -11,7 +11,7 @@ const Control = () => {
 				<input
 					ref={nameRef}
 					type="text"
-					placeholder="請輸入勇者名稱"
+					placeholder="請輸入勇者名稱(ctrl+q)"
 					onChange={onChange('name')}
 					onKeyDown={onKeyDown}
 				/>
