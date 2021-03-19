@@ -29,19 +29,6 @@
         margin-top: 80px;
       }
     }
-    .title {
-      font-size: 24px;
-      margin-bottom: 12px;
-      position: relative;
-      &__link {
-        font-size: 14px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        transform: translateX(calc(-100% - 12px));
-      }
-      &__text {}
-    }
     .break-line {
       width: 360px;
     }

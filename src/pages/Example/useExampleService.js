@@ -3,6 +3,8 @@ import { Arr } from 'jsl'
 import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'
 import { useLocalStorageState } from 'ahooks'
+import { useEffect } from 'react'
+import { injectLayout } from '@/components/Layout/useLayoutService'
 
 const fetchPicture = async type => {
 	if (type === EExampleType.DOG) {
@@ -15,6 +17,7 @@ const fetchPicture = async type => {
 }
 
 const exampleService = () => {
+	const { title, setTitle } = injectLayout()
 	const [list, setList] = useLocalStorageState('mrt_list', [])
 	const { loading, exec } = useLoad(fetchPicture, { run: false })
 
@@ -32,6 +35,12 @@ const exampleService = () => {
 
 	const removeAtList = id =>
 		getItemIndexAndCall(id, i => setList(Arr.splice(i, 1)))
+
+	useEffect(() => {
+		if (title !== 'Example') {
+			setTitle('Example')
+		}
+	}, [])
 
 	return {
 		list,
