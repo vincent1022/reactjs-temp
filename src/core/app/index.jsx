@@ -13,10 +13,9 @@ const App = () => {
 			<Suspense fallback={<LazyLoading />}>
 				<Switch>
 					{Routes}
-					<Route path={'/404'}>
+					<Route>
 						<NotFound />
 					</Route>
-					<Redirect to="/404" />
 				</Switch>
 			</Suspense>
 		</Router>
