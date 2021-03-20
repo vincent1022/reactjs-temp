@@ -26,9 +26,11 @@ const Example = props => {
 		'%c------------------------\n 以下為 Example 打印資訊\n------------------------',
 		'color: yellow; font-size: 18px; font-weight: bold;',
 	)
-	$devLog('warn', '>>> 可以使用 $devLog 在開發環境下隨意 log <<<')
-	$devLog('>>> Welcome to dash/example <<<')
-	$devLog('error', '>> 每個跟組件都能拿到路由資訊(props) <<')
+	$devLog('warn', '[console.warn] 可以使用 $devLog 在開發環境下隨意 log`')
+	$devLog('error', '[console.error] 每個跟組件都能拿到路由資訊(props)`')
+	$devLog(
+		'[console.log] $devLog 可以依照第一個傳入的 key 來取出對應的 log，undefined 則是一般的 console.log',
+	)
 	$devLog(props)
 	return (
 		<ExampleProvider>
