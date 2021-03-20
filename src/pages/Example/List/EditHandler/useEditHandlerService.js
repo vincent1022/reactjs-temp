@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
-import { injectExampleService } from '@/pages/Example/useExampleService'
+import { injectExample } from '@/pages/Example/useExampleService'
 import { useBoolean } from 'ahooks'
 
 const useEditHandlerService = item => {
-	const { updateItem, removeAtList, fetchImg } = injectExampleService()
+	const { updateItem, removeAtList, fetchImg } = injectExample()
 	const [visibleEdit, editModalFun] = useBoolean(false)
 	const [visibleDel, delModalFun] = useBoolean(false)
 	const state = useRef(item)

@@ -1,10 +1,10 @@
-import { injectExampleService } from '../useExampleService'
+import { injectExample } from '../useExampleService'
 import { useRef, useCallback, useEffect } from 'react'
 import EExampleType from '../../../enums/EExampleType'
 import { useKeyPress } from 'ahooks'
 
 const useControlService = () => {
-	const { list, addList, fetchImg } = injectExampleService()
+	const { list, addList, fetchImg } = injectExample()
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,
 		type: EExampleType.DOG,

@@ -52,7 +52,6 @@ const exampleService = () => {
 	}
 }
 
-export const {
-	Provider: ExampleProvider,
-	inject: injectExampleService,
-} = useProvider(exampleService)
+export const { Provider: ExampleProvider, inject: injectExample } = useProvider(
+	exampleService,
+)

@@ -2,13 +2,13 @@ import React, { useMemo } from 'react'
 import style from './style.module.scss'
 import {
 	ExampleProvider,
-	injectExampleService,
+	injectExample,
 } from '@/pages/Example/useExampleService'
 import Control from '@/pages/Example/Control'
 import List from '@/pages/Example/List'
 
 const Content = () => {
-	const { loading } = injectExampleService()
+	const { loading } = injectExample()
 	return useMemo(
 		() => (
 			<div className={style.root}>
@@ -21,9 +21,15 @@ const Content = () => {
 	)
 }
 
-const Example = () => {
+const Example = props => {
+	$devLog(
+		'%c------------------------\n 以下為 Example 打印資訊\n------------------------',
+		'color: yellow; font-size: 18px; font-weight: bold;',
+	)
 	$devLog('warn', '>>> 可以使用 $devLog 在開發環境下隨意 log <<<')
 	$devLog('>>> Welcome to dash/example <<<')
+	$devLog('error', '>> 每個跟組件都能拿到路由資訊(props) <<')
+	$devLog(props)
 	return (
 		<ExampleProvider>
 			<Content />
