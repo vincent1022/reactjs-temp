@@ -27,10 +27,11 @@ const Example = props => {
 		'color: yellow; font-size: 18px; font-weight: bold;',
 	)
 	$devLog(
-		'> [console.log] $devLog 可以依照第一個傳入的 key 來取出對應的 log，undefined 則是一般的 console.log',
+		'%c> [console.log] $devLog 可以依照第一個傳入的 key 來取出對應的 console，undefined 則是一般的 console.log',
+		'line-height: 1.3; padding-bottom: 4px;',
 	)
 	$devLog('warn', '[console.warn] 可以使用 $devLog 在開發環境下隨意 log`')
-	$devLog('error', '[console.error] 每個跟組件都能拿到路由資訊(props)`')
+	$devLog('error', '[console.error] 每個跟組件都能拿到路由資訊(props) ↓`')
 	$devLog(props)
 	return (
 		<ExampleProvider>
