@@ -20,11 +20,13 @@ for (const file of envFiles) {
 export default defineConfig({
 	plugins: [reactRefresh()],
 	esbuild: {
-	// 	jsxInject: `import React from 'react'`,
+		jsxInject: `import React from 'react'`,
 	},
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, './src'),
+			'@': path.resolve(__dirname, 'src'),
+			jsl: path.resolve(__dirname, 'jsl/lib'),
+			'jsl-react': path.resolve(__dirname, 'jsl/react'),
 		},
 	},
 	server: {

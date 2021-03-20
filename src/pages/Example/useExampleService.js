@@ -1,4 +1,4 @@
-import { useLoad, useProvider } from 'jsl/react/hooks'
+import { useLoad, useProvider } from 'jsl-react/hooks'
 import { Arr } from 'jsl'
 import EExampleType from '@/enums/EExampleType'
 import axios from 'axios'

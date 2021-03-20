@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import useEditHandlerService from '@/pages/Example/List/EditHandler/useEditHandlerService'
 import style from './style.module.scss'
 import Modal from '@/pages/Example/components/Modal'
@@ -6,6 +6,7 @@ import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
 
 const EditHandler = ({ item }) => {
 	const {
+		nameRef,
 		visibleEdit,
 		editModalFun,
 		onSubmitEditModal,
@@ -54,6 +55,7 @@ const EditHandler = ({ item }) => {
 							<div className="item__label">勇者名稱</div>
 							<div className="item__value">
 								<input
+									ref={nameRef}
 									type="text"
 									defaultValue={item.name}
 									onChange={ev => onChange('name', ev)}

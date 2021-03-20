@@ -7,12 +7,17 @@ const useEditHandlerService = item => {
 	const [visibleEdit, editModalFun] = useBoolean(false)
 	const [visibleDel, delModalFun] = useBoolean(false)
 	const state = useRef(item)
+	const nameRef = useRef(null)
 
 	useEffect(() => {
 		if (visibleEdit === false) {
 			state.current = { ...item }
 		}
 	}, [item, visibleEdit])
+
+	useEffect(() => {
+		nameRef.current?.focus()
+	}, [visibleEdit])
 
 	const onSubmitEditModal = async () => {
 		const s = state.current
@@ -36,6 +41,7 @@ const useEditHandlerService = item => {
 	}
 
 	return {
+		nameRef,
 		visibleEdit,
 		editModalFun,
 		onSubmitEditModal,

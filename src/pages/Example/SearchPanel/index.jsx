@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import style from './style.module.scss'
-import useControlService from '@/pages/Example/Control/useControlService'
+import useSearchPanelService from '@/pages/Example/SearchPanel/useSearchPanelService'
 import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
-const Control = () => {
-	const { onChange, onKeyDown, onCreate, nameRef } = useControlService()
+const SearchPanel = () => {
+	const { onChange, onKeyDown, onCreate, nameRef } = useSearchPanelService()
 	return useMemo(
 		() => (
 			<div className={style.root}>
@@ -22,4 +22,4 @@ const Control = () => {
 	)
 }
 
-export default Control
+export default SearchPanel

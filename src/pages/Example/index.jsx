@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import style from './style.module.scss'
 import {
 	ExampleProvider,
 	injectExample,
 } from '@/pages/Example/useExampleService'
-import Control from '@/pages/Example/Control'
+import SearchPanel from '@/pages/Example/SearchPanel'
 import List from '@/pages/Example/List'
 
 const Content = () => {
@@ -13,7 +13,7 @@ const Content = () => {
 		() => (
 			<div className={style.root}>
 				{loading && <div className="loading" />}
-				<Control />
+				<SearchPanel />
 				<List />
 			</div>
 		),

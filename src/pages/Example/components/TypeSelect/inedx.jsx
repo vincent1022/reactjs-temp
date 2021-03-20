@@ -1,4 +1,3 @@
-import React from 'react'
 import EExampleType from '@/enums/EExampleType'
 import useTypeSelectService from '@/pages/Example/components/TypeSelect/useTypeSelectService'
 

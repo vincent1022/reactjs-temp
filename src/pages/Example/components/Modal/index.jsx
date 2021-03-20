@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import ReactDOM from 'react-dom'
 import style from './style.module.scss'
 import { ClassName } from 'jsl'

@@ -4,12 +4,13 @@
   "scripts": {
     "dev": "cross-env APP_CONFIG=dev vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "add:jsl": "git clone https://github.com/frank575/jsl.git",
+    "upgrade:jsl": "cd ./jsl & git pull"
   },
   "dependencies": {
     "ahooks": "^2.9.6",
     "axios": "^0.21.1",
-    "jsl": "frank575/jsl",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0"

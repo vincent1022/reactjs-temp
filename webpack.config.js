@@ -5,6 +5,8 @@ module.exports = {
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
+			jsl: path.resolve(__dirname, 'jsl/lib'),
+			'jsl-react': path.resolve(__dirname, 'jsl/react'),
 		},
 	},
 }

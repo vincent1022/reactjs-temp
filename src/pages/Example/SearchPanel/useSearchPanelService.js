@@ -3,7 +3,7 @@ import { useRef, useCallback, useEffect } from 'react'
 import EExampleType from '../../../enums/EExampleType'
 import { useKeyPress } from 'ahooks'
 
-const useControlService = () => {
+const useSearchPanelService = () => {
 	const { list, addList, fetchImg } = injectExample()
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,
@@ -44,4 +44,4 @@ const useControlService = () => {
 	}
 }
 
-export default useControlService
+export default useSearchPanelService

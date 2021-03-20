@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useProvider } from 'jsl/react/hooks'
+import { useState } from 'react'
+import { useProvider } from 'jsl-react/hooks'
 
 const layoutService = () => {
 	const [title, setTitle] = useState('')
