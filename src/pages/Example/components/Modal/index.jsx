@@ -7,7 +7,7 @@ import { useKeyPress } from 'ahooks'
 const portalDom = document.createElement('div')
 document.body.append(portalDom)
 
-const Modal = ({
+export const Modal = ({
 	visible,
 	title,
 	onCancel,
@@ -54,5 +54,3 @@ const Modal = ({
 		portalDom,
 	)
 }
-
-export default Modal

@@ -4,7 +4,7 @@ import {
 	ExampleProvider,
 	injectExample,
 } from '@/pages/Example/useExampleService'
-import SearchPanel from '@/pages/Example/SearchPanel'
+import { SearchPanel } from '@/pages/Example/SearchPanel'
 import List from '@/pages/Example/List'
 
 const Content = () => {

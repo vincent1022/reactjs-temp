@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const useTypeSelectService = ({ all, onChange, defaultValue }) => {
+export const useTypeSelectService = ({ all, onChange, defaultValue }) => {
 	const selectRef = useRef(null)
 
 	useEffect(() => {
@@ -16,5 +16,3 @@ const useTypeSelectService = ({ all, onChange, defaultValue }) => {
 		selectRef,
 	}
 }
-
-export default useTypeSelectService

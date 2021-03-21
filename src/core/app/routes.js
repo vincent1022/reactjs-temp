@@ -1,8 +1,8 @@
 import { lazy } from 'react'
 import { createBrowserHistory } from 'history'
 import { createRoutes } from 'jsl-react/lib'
-import NotFound from '@/components/NotFound'
-import Layout from '@/components/Layout'
+import { NotFound } from '@/components/NotFound'
+import { Layout } from '@/components/Layout'
 const Home = lazy(() => import('@/pages/Home'))
 const Example = lazy(() => import('@/pages/Example'))
 

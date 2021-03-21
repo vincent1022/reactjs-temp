@@ -1,6 +1,6 @@
 import { useLoad, useProvider } from 'jsl-react/hooks'
 import { Arr } from 'jsl'
-import EExampleType from '@/enums/EExampleType'
+import { EExampleType } from '@/enums/EExampleType'
 import axios from 'axios'
 import { useLocalStorageState } from 'ahooks'
 import { useEffect } from 'react'

@@ -1,8 +1,8 @@
 import { injectExample } from '../useExampleService'
 import { useState, useMemo } from 'react'
-import EExampleType from '../../../enums/EExampleType'
+import { EExampleType } from '../../../enums/EExampleType'
 
-const useListService = () => {
+export const useListService = () => {
 	const { list } = injectExample()
 	const [type, setType] = useState(EExampleType.ALL)
 	const onChangeType = ev => {
@@ -18,5 +18,3 @@ const useListService = () => {
 		filterList,
 	}
 }
-
-export default useListService

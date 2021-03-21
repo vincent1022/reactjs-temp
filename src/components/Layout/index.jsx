@@ -24,12 +24,10 @@ const Content = ({ children }) => {
 	)
 }
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
 	return (
 		<LayoutProvider>
 			<Content>{children}</Content>
 		</LayoutProvider>
 	)
 }
-
-export default Layout

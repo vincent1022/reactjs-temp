@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
-import useEditHandlerService from '@/pages/Example/List/EditHandler/useEditHandlerService'
+import { useEditHandlerService } from '@/pages/Example/List/EditHandler/useEditHandlerService'
 import style from './style.module.scss'
-import Modal from '@/pages/Example/components/Modal'
-import TypeSelect from '@/pages/Example/components/TypeSelect/inedx'
+import { Modal } from '@/pages/Example/components/Modal'
+import { TypeSelect } from '@/pages/Example/components/TypeSelect/inedx'
 
-const EditHandler = ({ item }) => {
+export const EditHandler = ({ item }) => {
 	const {
 		nameRef,
 		visibleEdit,
@@ -69,5 +69,3 @@ const EditHandler = ({ item }) => {
 		[item, visibleEdit, visibleDel],
 	)
 }
-
-export default EditHandler

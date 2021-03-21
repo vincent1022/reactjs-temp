@@ -1,9 +1,9 @@
 import { injectExample } from '../useExampleService'
 import { useRef, useCallback, useEffect } from 'react'
-import EExampleType from '../../../enums/EExampleType'
+import { EExampleType } from '../../../enums/EExampleType'
 import { useKeyPress } from 'ahooks'
 
-const useSearchPanelService = () => {
+export const useSearchPanelService = () => {
 	const { list, addList, fetchImg } = injectExample()
 	const state = useRef({
 		id: list.length ? list[list.length - 1].id + 1 : 1,
@@ -43,5 +43,3 @@ const useSearchPanelService = () => {
 		nameRef,
 	}
 }
-
-export default useSearchPanelService

@@ -1,7 +1,5 @@
 import style from './style.module.scss'
 
-const LazyLoading = () => {
+export const LazyLoading = () => {
 	return <div className={style.root}>Loading...</div>
 }
-
-export default LazyLoading

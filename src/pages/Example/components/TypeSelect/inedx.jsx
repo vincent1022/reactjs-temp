@@ -1,7 +1,7 @@
-import EExampleType from '@/enums/EExampleType'
-import useTypeSelectService from '@/pages/Example/components/TypeSelect/useTypeSelectService'
+import { EExampleType } from '@/enums/EExampleType'
+import { useTypeSelectService } from '@/pages/Example/components/TypeSelect/useTypeSelectService'
 
-const TypeSelect = props => {
+export const TypeSelect = props => {
 	const { selectRef, onChange, all } = useTypeSelectService(props)
 	return (
 		<select
@@ -23,5 +23,3 @@ const TypeSelect = props => {
 		</select>
 	)
 }
-
-export default TypeSelect
