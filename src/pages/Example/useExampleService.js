@@ -18,23 +18,23 @@ const fetchPicture = async type => {
 
 const exampleService = () => {
 	const { title, setTitle } = injectLayout()
-	const [list, setList] = useLocalStorageState('mrt_list', [])
+	const [braves, setBraves] = useLocalStorageState('mrt_list', [])
 	const { loading, exec } = useLoad(fetchPicture, { run: false })
 
 	const getItemIndexAndCall = (id, callback) => {
-		const index = list.findIndex(e => e.id === id)
+		const index = braves.findIndex(e => e.id === id)
 		if (index !== -1) {
 			callback && callback(index)
 		}
 	}
 
-	const addList = val => setList(Arr.push(val))
+	const addBrave = val => setBraves(Arr.push(val))
 
-	const updateItem = (val, id) =>
-		getItemIndexAndCall(id, i => setList(Arr.update(i, val)))
+	const updateBrave = (val, id) =>
+		getItemIndexAndCall(id, i => setBraves(Arr.update(i, val)))
 
-	const removeAtList = id =>
-		getItemIndexAndCall(id, i => setList(Arr.splice(i, 1)))
+	const removeAtBraves = id =>
+		getItemIndexAndCall(id, i => setBraves(Arr.splice(i, 1)))
 
 	useEffect(() => {
 		if (title !== 'Example') {
@@ -43,10 +43,10 @@ const exampleService = () => {
 	}, [])
 
 	return {
-		list,
-		addList,
-		updateItem,
-		removeAtList,
+		braves,
+		addBrave,
+		updateBrave,
+		removeAtBraves,
 		loading,
 		fetchImg: exec.run,
 	}

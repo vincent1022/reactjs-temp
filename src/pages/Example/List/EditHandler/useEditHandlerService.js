@@ -3,7 +3,7 @@ import { injectExample } from '@/pages/Example/useExampleService'
 import { useBoolean } from 'ahooks'
 
 export const useEditHandlerService = item => {
-	const { updateItem, removeAtList, fetchImg } = injectExample()
+	const { updateBrave, removeAtBraves, fetchImg } = injectExample()
 	const [visibleEdit, editModalFun] = useBoolean(false)
 	const [visibleDel, delModalFun] = useBoolean(false)
 	const state = useRef(item)
@@ -30,11 +30,11 @@ export const useEditHandlerService = item => {
 			s.url = await fetchImg(s.type)
 		}
 		editModalFun.setFalse()
-		updateItem(s, item.id)
+		updateBrave(s, item.id)
 	}
 	const onSubmitDelModal = () => {
 		delModalFun.setFalse()
-		removeAtList(item.id)
+		removeAtBraves(item.id)
 	}
 	const onChange = (key, ev) => {
 		state.current[key] = ev.target.value
@@ -48,7 +48,6 @@ export const useEditHandlerService = item => {
 		visibleDel,
 		delModalFun,
 		onSubmitDelModal,
-		removeAtList,
 		onChange,
 	}
 }

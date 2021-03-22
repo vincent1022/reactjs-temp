@@ -4,9 +4,9 @@ import { EExampleType } from '../../../enums/EExampleType'
 import { useKeyPress } from 'ahooks'
 
 export const useSearchPanelService = () => {
-	const { list, addList, fetchImg } = injectExample()
+	const { braves, addBrave, fetchImg } = injectExample()
 	const state = useRef({
-		id: list.length ? list[list.length - 1].id + 1 : 1,
+		id: braves.length ? braves[braves.length - 1].id + 1 : 1,
 		type: EExampleType.DOG,
 		name: '',
 	})
@@ -18,7 +18,7 @@ export const useSearchPanelService = () => {
 			return alert('勇者名稱不得為空')
 		}
 		const url = await fetchImg(type)
-		addList({
+		addBrave({
 			id,
 			url,
 			name,

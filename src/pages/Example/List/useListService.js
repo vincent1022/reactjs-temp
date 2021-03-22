@@ -3,17 +3,17 @@ import { useState, useMemo } from 'react'
 import { EExampleType } from '../../../enums/EExampleType'
 
 export const useListService = () => {
-	const { list } = injectExample()
+	const { braves } = injectExample()
 	const [type, setType] = useState(EExampleType.ALL)
 	const onChangeType = ev => {
 		setType(ev.target.value)
 	}
 	const filterList = useMemo(
-		() => list.filter(e => type === EExampleType.ALL || e.type === type),
-		[list, type],
+		() => braves.filter(e => type === EExampleType.ALL || e.type === type),
+		[braves, type],
 	)
 	return {
-		list,
+		list: braves,
 		onChangeType,
 		filterList,
 	}

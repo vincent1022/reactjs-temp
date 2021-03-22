@@ -1,7 +1,9 @@
 import styles from './style.module.scss'
 import { Link } from 'react-router-dom'
+import { useTitle } from 'ahooks'
 
 const Home = () => {
+	useTitle('reactjs-temp')
 	return (
 		<div className={styles.root}>
 			<div className={'logo'}>

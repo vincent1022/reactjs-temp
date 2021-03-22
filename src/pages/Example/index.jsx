@@ -6,6 +6,7 @@ import {
 } from '@/pages/Example/useExampleService'
 import { SearchPanel } from '@/pages/Example/SearchPanel'
 import List from '@/pages/Example/List'
+import { useTitle } from 'ahooks'
 
 const Content = () => {
 	const { loading } = injectExample()
@@ -22,6 +23,7 @@ const Content = () => {
 }
 
 const Example = props => {
+	useTitle('reactjs-temp-example')
 	$devLog(
 		'%c------------------------\n 以下為 Example 打印資訊\n------------------------',
 		'color: yellow; font-size: 18px; font-weight: bold;',
