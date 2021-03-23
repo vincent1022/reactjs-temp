@@ -12,7 +12,7 @@ export const useSearchPanelService = () => {
 		type: EExampleType.DOG,
 		name: '',
 	})
-	const nameRef = useRef(null)
+	const nameInput = useRef(null)
 	const onChange = useCallback(
 		key => ev => (stateRef.current[key] = ev.target.value),
 		[stateRef],
@@ -30,23 +30,23 @@ export const useSearchPanelService = () => {
 			type,
 		})
 		stateRef.current.id++
-		if (nameRef.current) {
-			nameRef.current.value = ''
+		if (nameInput.current) {
+			nameInput.current.value = ''
 			stateRef.current.name = ''
 		}
 	}, [stateRef])
 	const onKeyDown = useCallback(ev => ev.key === 'Enter' && onCreate(), [
 		onCreate,
 	])
-	useKeyPress('ctrl.q', () => nameRef.current?.focus())
+	useKeyPress('ctrl.q', () => nameInput.current?.focus())
 	useEffect(() => {
-		nameRef.current?.focus()
-	}, [nameRef.current])
+		nameInput.current?.focus()
+	}, [nameInput.current])
 
 	return {
 		onChange,
 		onKeyDown,
 		onCreate,
-		nameRef,
+		nameInput,
 	}
 }

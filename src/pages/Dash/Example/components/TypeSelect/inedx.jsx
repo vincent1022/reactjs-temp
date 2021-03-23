@@ -1,5 +1,5 @@
 import { EExampleType } from '@/enums/EExampleType'
-import { useTypeSelectService } from '@/pages/Example/components/TypeSelect/useTypeSelectService'
+import { useTypeSelectService } from '@/pages/Dash/Example/components/TypeSelect/useTypeSelectService'
 
 export const TypeSelect = props => {
 	const { selectRef, onChange, all } = useTypeSelectService(props)

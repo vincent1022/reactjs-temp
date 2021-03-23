@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import ReactDOM from 'react-dom'
 import style from './style.module.scss'
 import { ClassName } from 'jsl'
-import { useModalService } from '@/pages/Example/components/Modal/useModalService'
+import { useModalService } from '@/pages/Dash/Example/components/Modal/useModalService'
 
 const portalDom = document.createElement('div')
 document.body.append(portalDom)

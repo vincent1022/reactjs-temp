@@ -1,11 +1,10 @@
-import { useMemo } from 'react'
 import style from './style.module.scss'
 import {
 	ExampleProvider,
 	injectExample,
-} from '@/pages/Example/useExampleService'
-import { SearchPanel } from '@/pages/Example/SearchPanel'
-import List from '@/pages/Example/List'
+} from '@/pages/Dash/Example/useExampleService'
+import { SearchPanel } from '@/pages/Dash/Example/SearchPanel'
+import List from '@/pages/Dash/Example/List'
 import { useTitle } from 'ahooks'
 
 const Loading = () => {
@@ -25,7 +24,7 @@ const Content = () => {
 }
 
 const Example = props => {
-	useTitle('reactjs-temp-example')
+	useTitle('[Example] reactjs-temp')
 	$devLog(
 		'%c------------------------\n 以下為 Example 打印資訊\n------------------------',
 		'color: yellow; font-size: 18px; font-weight: bold;',

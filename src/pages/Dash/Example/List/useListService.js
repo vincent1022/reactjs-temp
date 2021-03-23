@@ -1,5 +1,5 @@
 import { injectExample } from '../useExampleService'
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { EExampleType } from '@/enums/EExampleType'
 
 export const useListService = () => {

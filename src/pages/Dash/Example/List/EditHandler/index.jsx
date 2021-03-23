@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
-import { useEditHandlerService } from '@/pages/Example/List/EditHandler/useEditHandlerService'
+import { useEditHandlerService } from '@/pages/Dash/Example/List/EditHandler/useEditHandlerService'
 import style from './style.module.scss'
-import { Modal } from '@/pages/Example/components/Modal'
-import { TypeSelect } from '@/pages/Example/components/TypeSelect/inedx'
+import { Modal } from '@/pages/Dash/Example/components/Modal'
+import { TypeSelect } from '@/pages/Dash/Example/components/TypeSelect/inedx'
 
 export const EditHandler = ({ item }) => {
 	const {
-		nameRef,
+		nameInput,
 		visibleEdit,
 		editModalFun,
 		onSubmitEditModal,
@@ -55,7 +55,7 @@ export const EditHandler = ({ item }) => {
 							<div className="item__label">勇者名稱</div>
 							<div className="item__value">
 								<input
-									ref={nameRef}
+									ref={nameInput}
 									type="text"
 									defaultValue={item.name}
 									onChange={ev => onChange('name', ev)}
