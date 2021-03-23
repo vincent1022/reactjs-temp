@@ -6,7 +6,7 @@ import { EExampleType } from '@/enums/EExampleType'
 import { EditHandler } from '@/pages/Example/List/EditHandler'
 
 const List = () => {
-	const { filterList, onChangeType } = useListService()
+	const { filterBraves, onChangeType } = useListService()
 	return useMemo(
 		() => (
 			<ul className={style.root}>
@@ -17,7 +17,7 @@ const List = () => {
 					</div>
 					<div className="head__name">勇者名稱</div>
 				</div>
-				{filterList.map((e, i) => (
+				{filterBraves.map((e, i) => (
 					<li className={'item'} key={e.id}>
 						<div className="item__id">{e.id}</div>
 						<div className="item__pic">
@@ -31,7 +31,7 @@ const List = () => {
 				))}
 			</ul>
 		),
-		[filterList],
+		[filterBraves],
 	)
 }
 
