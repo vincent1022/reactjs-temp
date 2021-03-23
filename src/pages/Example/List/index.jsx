@@ -17,7 +17,7 @@ const List = () => {
 					</div>
 					<div className="head__name">勇者名稱</div>
 				</div>
-				{filterBraves.map((e, i) => (
+				{filterBraves.map(e => (
 					<li className={'item'} key={e.id}>
 						<div className="item__id">{e.id}</div>
 						<div className="item__pic">
