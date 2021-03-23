@@ -1,19 +1,24 @@
 import { injectExample } from '../useExampleService'
 import { useRef, useCallback, useEffect } from 'react'
-import { EExampleType } from '../../../enums/EExampleType'
+import { EExampleType } from '@/enums/EExampleType'
 import { useKeyPress } from 'ahooks'
 
 export const useSearchPanelService = () => {
-	const { braves, addBrave, fetchImg } = injectExample()
-	const state = useRef({
+	const braves = injectExample('braves')
+	const addBrave = injectExample('addBrave')
+	const fetchImg = injectExample('fetchImg')
+	const stateRef = useRef({
 		id: braves.length ? braves[braves.length - 1].id + 1 : 1,
 		type: EExampleType.DOG,
 		name: '',
 	})
 	const nameRef = useRef(null)
-	const onChange = key => ev => (state.current[key] = ev.target.value)
+	const onChange = useCallback(
+		key => ev => (stateRef.current[key] = ev.target.value),
+		[stateRef],
+	)
 	const onCreate = useCallback(async () => {
-		const { id, type, name } = state.current
+		const { id, type, name } = stateRef.current
 		if (typeof name === 'string' && name.trim() === '') {
 			return alert('勇者名稱不得為空')
 		}
@@ -24,13 +29,15 @@ export const useSearchPanelService = () => {
 			name,
 			type,
 		})
-		state.current.id++
+		stateRef.current.id++
 		if (nameRef.current) {
 			nameRef.current.value = ''
-			state.current.name = ''
+			stateRef.current.name = ''
 		}
-	}, [state.current])
-	const onKeyDown = ev => ev.key === 'Enter' && onCreate()
+	}, [stateRef])
+	const onKeyDown = useCallback(ev => ev.key === 'Enter' && onCreate(), [
+		onCreate,
+	])
 	useKeyPress('ctrl.q', () => nameRef.current?.focus())
 	useEffect(() => {
 		nameRef.current?.focus()

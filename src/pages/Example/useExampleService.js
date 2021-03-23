@@ -3,7 +3,7 @@ import { Arr } from 'jsl'
 import { EExampleType } from '@/enums/EExampleType'
 import axios from 'axios'
 import { useLocalStorageState } from 'ahooks'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { injectLayout } from '@/components/Layout/useLayoutService'
 
 const fetchPicture = async type => {
@@ -17,29 +17,34 @@ const fetchPicture = async type => {
 }
 
 const exampleService = () => {
-	const { title, setTitle } = injectLayout()
+	const setTitle = injectLayout('setTitle')
 	const [braves, setBraves] = useLocalStorageState('mrt_list', [])
 	const { loading, exec } = useLoad(fetchPicture, { run: false })
 
-	const getItemIndexAndCall = (id, callback) => {
-		const index = braves.findIndex(e => e.id === id)
-		if (index !== -1) {
-			callback && callback(index)
-		}
-	}
+	const getItemIndexAndCall = useCallback(
+		(id, callback) => {
+			const index = braves.findIndex(e => e.id === id)
+			if (index !== -1) {
+				callback && callback(index)
+			}
+		},
+		[braves],
+	)
 
-	const addBrave = val => setBraves(Arr.push(val))
+	const addBrave = useCallback(val => setBraves(Arr.push(val)), [setBraves])
 
-	const updateBrave = (val, id) =>
-		getItemIndexAndCall(id, i => setBraves(Arr.update(i, val)))
+	const updateBrave = useCallback(
+		(val, id) => getItemIndexAndCall(id, i => setBraves(Arr.update(i, val))),
+		[getItemIndexAndCall, setBraves],
+	)
 
-	const removeAtBraves = id =>
-		getItemIndexAndCall(id, i => setBraves(Arr.splice(i, 1)))
+	const removeAtBraves = useCallback(
+		id => getItemIndexAndCall(id, i => setBraves(Arr.splice(i, 1))),
+		[getItemIndexAndCall, setBraves],
+	)
 
 	useEffect(() => {
-		if (title !== 'Example') {
-			setTitle('Example')
-		}
+		setTitle('Example')
 	}, [])
 
 	return {

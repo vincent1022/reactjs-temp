@@ -7,7 +7,7 @@ import {
 } from '@/components/Layout/useLayoutService'
 
 const Content = ({ children }) => {
-	const { title } = injectLayout()
+	const title = injectLayout('title')
 	return useMemo(
 		() => (
 			<main className={style.root}>

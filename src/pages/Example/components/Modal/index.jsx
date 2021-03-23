@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import ReactDOM from 'react-dom'
 import style from './style.module.scss'
 import { ClassName } from 'jsl'
-import { useKeyPress } from 'ahooks'
+import { useModalService } from '@/pages/Example/components/Modal/useModalService'
 
 const portalDom = document.createElement('div')
 document.body.append(portalDom)
@@ -15,8 +15,7 @@ export const Modal = ({
 	children,
 	noContent = false,
 }) => {
-	useKeyPress('Escape', () => visible && onCancel && onCancel())
-	useKeyPress('Enter', () => visible && onSubmit && onSubmit())
+	useModalService({ visible, onCancel, onSubmit })
 	return ReactDOM.createPortal(
 		useMemo(
 			() =>

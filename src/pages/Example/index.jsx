@@ -8,17 +8,19 @@ import { SearchPanel } from '@/pages/Example/SearchPanel'
 import List from '@/pages/Example/List'
 import { useTitle } from 'ahooks'
 
+const Loading = () => {
+	const loading = injectExample('loading')
+	if (!loading) return null
+	return <div className="loading" />
+}
+
 const Content = () => {
-	const { loading } = injectExample()
-	return useMemo(
-		() => (
-			<div className={style.root}>
-				{loading && <div className="loading" />}
-				<SearchPanel />
-				<List />
-			</div>
-		),
-		[loading],
+	return (
+		<div className={style.root}>
+			<Loading />
+			<SearchPanel />
+			<List />
+		</div>
 	)
 }
 

@@ -1,17 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { injectExample } from '@/pages/Example/useExampleService'
 import { useBoolean } from 'ahooks'
 
 export const useEditHandlerService = item => {
-	const { updateBrave, removeAtBraves, fetchImg } = injectExample()
+	const updateBrave = injectExample('updateBrave')
+	const removeAtBraves = injectExample('removeAtBraves')
+	const fetchImg = injectExample('fetchImg')
 	const [visibleEdit, editModalFun] = useBoolean(false)
 	const [visibleDel, delModalFun] = useBoolean(false)
-	const state = useRef(item)
+	const stateRef = useRef(item)
 	const nameRef = useRef(null)
 
 	useEffect(() => {
 		if (visibleEdit === false) {
-			state.current = { ...item }
+			stateRef.current = { ...item }
 		}
 	}, [item, visibleEdit])
 
@@ -19,8 +21,8 @@ export const useEditHandlerService = item => {
 		nameRef.current?.focus()
 	}, [visibleEdit])
 
-	const onSubmitEditModal = async () => {
-		const s = state.current
+	const onSubmitEditModal = useCallback(async () => {
+		const s = stateRef.current
 		const isSameName = s.name === item.name
 		const isSameType = s.type === item.type
 		if (isSameName && isSameType) {
@@ -31,14 +33,17 @@ export const useEditHandlerService = item => {
 		}
 		editModalFun.setFalse()
 		updateBrave(s, item.id)
-	}
-	const onSubmitDelModal = () => {
+	}, [editModalFun, updateBrave, stateRef])
+	const onSubmitDelModal = useCallback(() => {
 		delModalFun.setFalse()
 		removeAtBraves(item.id)
-	}
-	const onChange = (key, ev) => {
-		state.current[key] = ev.target.value
-	}
+	}, [delModalFun, removeAtBraves])
+	const onChange = useCallback(
+		(key, ev) => {
+			stateRef.current[key] = ev.target.value
+		},
+		[stateRef],
+	)
 
 	return {
 		nameRef,
