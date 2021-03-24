@@ -17,44 +17,32 @@ export const useBraves = () => {
 		setBraves(braves)
 	}, [setBraves, __mockGetBraves])
 
+	const commonFetch = async run => {
+		setLoading(true)
+		run && (await run())
+		await getBraves()
+		setLoading(false)
+	}
+
 	const addBrave = useCallback(
-		async brave => {
-			setLoading(true)
-			await __mockAddBraves(brave)
-			await getBraves()
-			setLoading(false)
-		},
-		[setLoading, getBraves, __mockAddBraves],
+		async brave => commonFetch(() => __mockAddBraves(brave)),
+		[commonFetch, __mockAddBraves],
 	)
 
 	const updateBrave = useCallback(
-		async brave => {
-			setLoading(true)
-			await __mockUpdateBraves(brave)
-			await getBraves()
-			setLoading(false)
-		},
-		[setLoading, getBraves, __mockUpdateBraves],
+		async brave => commonFetch(() => __mockUpdateBraves(brave)),
+		[commonFetch, __mockUpdateBraves],
 	)
 
 	const removeAtBraves = useCallback(
-		async brave => {
-			setLoading(true)
-			await __mockRemoveBraves(brave)
-			await getBraves()
-			setLoading(false)
-		},
-		[setLoading, getBraves, __mockRemoveBraves],
+		async brave => commonFetch(() => __mockRemoveBraves(brave)),
+		[commonFetch, __mockRemoveBraves],
 	)
 
 	useEffect(() => {
-		;(async () => {
-			if (braves.length === 0) {
-				setLoading(true)
-				await getBraves()
-				setLoading(false)
-			}
-		})()
+		if (braves.length === 0) {
+			commonFetch()
+		}
 	}, [])
 
 	return {
