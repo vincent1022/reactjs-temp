@@ -1,53 +1,65 @@
-import { EExampleType } from '@/enums/EExampleType'
-import axios from 'axios'
-import { useLoad } from 'jsl-react/hooks'
-import { useCallback } from 'react'
-import { useLocalStorageState } from 'ahooks'
-import { Arr } from 'jsl'
+import { useCallback, useEffect, useState } from 'react'
+import {
+	__mockAddBraves,
+	__mockGetBraves,
+	__mockRemoveBraves,
+	__mockUpdateBraves,
+} from '@/pages/Dash/__mock__/brave'
+import { useStorageState } from 'jsl-react/hooks'
 
-export const useFetchPicture = () => {
-	const fetchPicture = useCallback(async type => {
-		if (type === EExampleType.DOG) {
-			const res = await axios.get('https://dog.ceo/api/breeds/image/random')
-			return res.data.message
-		} else if (type === EExampleType.CAT) {
-			const res = await axios.get('https://api.thecatapi.com/v1/images/search')
-			return res.data[0].url
-		}
-	}, [])
-
-	const { loading, exec } = useLoad(fetchPicture, { run: false })
-
-	return [loading, exec.run]
-}
-
+const bravesSymbol = Symbol()
 export const useBraves = () => {
-	const [braves, setBraves] = useLocalStorageState('mrt_list', [])
+	const [isLoading, setLoading] = useState(false)
+	const [braves, setBraves] = useStorageState(bravesSymbol, [])
 
-	const getItemIndexAndCall = useCallback(
-		(id, callback) => {
-			const index = braves.findIndex(e => e.id === id)
-			if (index !== -1) {
-				callback && callback(index)
-			}
+	const getBraves = useCallback(async () => {
+		const braves = await __mockGetBraves()
+		setBraves(braves)
+	}, [setBraves, __mockGetBraves])
+
+	const addBrave = useCallback(
+		async brave => {
+			setLoading(true)
+			await __mockAddBraves(brave)
+			await getBraves()
+			setLoading(false)
 		},
-		[braves],
+		[setLoading, getBraves, __mockAddBraves],
 	)
 
-	const addBrave = useCallback(val => setBraves(Arr.push(val)), [setBraves])
-
 	const updateBrave = useCallback(
-		(val, id) => getItemIndexAndCall(id, i => setBraves(Arr.update(i, val))),
-		[getItemIndexAndCall, setBraves],
+		async brave => {
+			setLoading(true)
+			await __mockUpdateBraves(brave)
+			await getBraves()
+			setLoading(false)
+		},
+		[setLoading, getBraves, __mockUpdateBraves],
 	)
 
 	const removeAtBraves = useCallback(
-		id => getItemIndexAndCall(id, i => setBraves(Arr.splice(i, 1))),
-		[getItemIndexAndCall, setBraves],
+		async brave => {
+			setLoading(true)
+			await __mockRemoveBraves(brave)
+			await getBraves()
+			setLoading(false)
+		},
+		[setLoading, getBraves, __mockRemoveBraves],
 	)
 
+	useEffect(() => {
+		;(async () => {
+			if (braves.length === 0) {
+				setLoading(true)
+				await getBraves()
+				setLoading(false)
+			}
+		})()
+	}, [])
+
 	return {
-		braves,
+		braves: braves,
+		loading: isLoading,
 		addBrave,
 		updateBrave,
 		removeAtBraves,

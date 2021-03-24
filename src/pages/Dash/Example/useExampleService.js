@@ -1,21 +1,19 @@
 import { useProvider } from 'jsl-react/hooks'
 import { injectLayout } from '@/components/Layout/useLayoutService'
-import { useBraves, useFetchPicture } from '@/pages/Dash/Example/helper'
+import { useBraves } from '@/pages/Dash/Example/helper'
 
 const exampleService = () => {
 	const useSetLayoutTitle = injectLayout('useSetLayoutTitle')
-	const [loading, fetchImg] = useFetchPicture()
-	const { braves, addBrave, updateBrave, removeAtBraves } = useBraves()
+	const { braves, loading, addBrave, updateBrave, removeAtBraves } = useBraves()
 
 	useSetLayoutTitle('Example')
 
 	return {
 		braves,
+		loading,
 		addBrave,
 		updateBrave,
 		removeAtBraves,
-		loading,
-		fetchImg,
 	}
 }
 

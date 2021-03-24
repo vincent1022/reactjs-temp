@@ -48,7 +48,7 @@ export const Modal = ({
 						</div>
 					</div>
 				) : null,
-			[visible, children],
+			[visible, children, onSubmit, onCancel],
 		),
 		portalDom,
 	)
