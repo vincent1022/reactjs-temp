@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useProvider, useStorageState } from 'jsl-react/hooks'
+import { useCallback, useEffect } from 'react'
+import { useProvider, useStorageState, useLoad } from 'jsl-react/hooks'
 import { injectLayout } from '@/components/Layout/useLayoutService'
 import {
 	__mockAddBraves,
@@ -10,7 +10,7 @@ import {
 
 const bravesSymbol = Symbol()
 const useBraves = () => {
-	const [isLoading, setLoading] = useState(false)
+	const [{ loading }, bindLoading] = useLoad()
 	const [braves, setBraves] = useStorageState(bravesSymbol, [])
 
 	const getBraves = useCallback(async () => {
@@ -18,37 +18,42 @@ const useBraves = () => {
 		setBraves(braves)
 	}, [setBraves, __mockGetBraves])
 
-	const commonFetch = async run => {
-		setLoading(true)
-		run && (await run())
-		await getBraves()
-		setLoading(false)
-	}
-
 	const addBrave = useCallback(
-		async brave => commonFetch(() => __mockAddBraves(brave)),
-		[commonFetch, __mockAddBraves],
+		async brave =>
+			bindLoading(async () => {
+				await __mockAddBraves(brave)
+				await getBraves()
+			}),
+		[__mockAddBraves],
 	)
 
 	const updateBrave = useCallback(
-		async brave => commonFetch(() => __mockUpdateBraves(brave)),
-		[commonFetch, __mockUpdateBraves],
+		async brave =>
+			bindLoading(async () => {
+				await __mockUpdateBraves(brave)
+				await getBraves()
+			}),
+		[__mockUpdateBraves],
 	)
 
 	const removeAtBraves = useCallback(
-		async brave => commonFetch(() => __mockRemoveBraves(brave)),
-		[commonFetch, __mockRemoveBraves],
+		async brave =>
+			bindLoading(async () => {
+				await __mockRemoveBraves(brave)
+				await getBraves()
+			}),
+		[__mockRemoveBraves],
 	)
 
 	useEffect(() => {
 		if (braves.length === 0) {
-			commonFetch()
+			bindLoading(getBraves)
 		}
 	}, [])
 
 	return {
 		braves: braves,
-		loading: isLoading,
+		loading,
 		addBrave,
 		updateBrave,
 		removeAtBraves,
