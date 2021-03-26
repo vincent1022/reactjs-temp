@@ -1,20 +1,7 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-const fs = require('fs')
 const path = require('path')
-const dotenv = require('dotenv')
-
-const envFiles = [`.env`, `.env.${process.env.APP_CONFIG}`]
-
-for (const file of envFiles) {
-	try {
-		const f = fs.readFileSync(file)
-		const envConfig = dotenv.parse(f)
-		for (const k in envConfig) {
-			process.env[k] = envConfig[k]
-		}
-	} catch (err) {}
-}
+require('./ci/index')
 
 // https://vitejs.dev/config/
 export default defineConfig({
