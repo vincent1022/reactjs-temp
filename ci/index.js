@@ -4,6 +4,7 @@ const { execSync } = require('child_process')
 const dotenv = require('dotenv')
 
 // 環境注入
+console.log(`[START] set env`)
 for (const file of [`.env`, `.env.${process.env.APP_ENV}`]) {
 	try {
 		const f = fs.readFileSync(file)
@@ -13,6 +14,7 @@ for (const file of [`.env`, `.env.${process.env.APP_ENV}`]) {
 		}
 	} catch (err) {}
 }
+console.log(`[END] set env`)
 
 // jsl 依賴檢測
 ;(async () => {
