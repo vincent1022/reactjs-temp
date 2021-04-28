@@ -1,40 +1,205 @@
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  from {
-    transform: rotate(360deg);
-  }
-}
-
 .root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
-  background: #1b1b1b;
-  color: #fff;
-  position: relative;
-  z-index: 1;
+  background: #ffffff;
+  padding-top: 5%;
+  //position: relative;
+  //z-index: 1;
   :global {
     .logo {
-      width: 212px;
-      height: 150px;
-      position: relative;
+      position: fixed;
+      top: 0;
+      z-index: 20;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+    }
+    .banner-1 {
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+    }
+    .title-1 {
+      margin-bottom: 35px;
+      padding: 0 20px;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+    }
+
+    .bg-1 {
+      cursor: unset;
+      position: absolute;
       z-index: -1;
-      &:local {
-        animation: rotate infinite 12s linear;
+      top: 146%;
+
+      &:hover {
+        opacity: unset;
       }
     }
-    .title {
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-    .tip {
-      a {
-        color: #fff;
+
+    .device-group {
+      position: relative;
+
+      img {
+        max-width: 100%;
+        height:auto;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+        }
       }
+
+      .toast {
+        width: 14.7vw;
+        position: absolute;
+        cursor: unset;
+        right: -18%;
+        top: -26%;
+
+        &:hover {
+          opacity: unset;
+        }
+      }
+
+      .airplane {
+        position: absolute;
+        cursor: unset;
+        width: 14.7vw;
+        left: -10%;
+        bottom: -34%;
+
+        &:hover {
+          opacity: unset;
+        }
+      }
+    }
+    .banner-2 {
+      position: relative;
+      margin-top: 164px;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+
+      .chicken {
+        position: absolute;
+        top: 30%;
+      }
+    }
+    .banner-3 {
+      position: relative;
+      margin-top: 160px;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+
+      .hotDog {
+        position: absolute;
+        top: 60%;
+        right: -5%;
+      }
+    }
+    .banner-4 {
+      position: relative;
+      margin-top: 120px;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+
+      .pot {
+        position: absolute;
+        top: 35%;
+        left: -10%;
+      }
+    }
+    .banner-5 {
+      position: relative;
+      margin-top: 120px;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+
+      .pizza {
+        position: absolute;
+      }
+    }
+    .banner-6 {
+      margin-top: 120px;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+    }
+    .footer {
+      position: relative;
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+
+      .mail {
+        position: absolute;
+        right: 18%;
+        top: 50%;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+        }
+
+      }
+    }
+    .contact-block {
+      display: flex;
+      position: relative;
+      bottom: -35%;
+      margin-top: -15%;
+
+      .thumbs {
+        position: absolute;
+        right: -22%;
+        top: 8%;
+      }
+
+      img {
+        max-width: 100%;
+        height:auto;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        margin: 175px 0 0 93px;
+
+        img {
+          &:nth-child(1) {
+            margin-bottom: 25px;
+          }
+        }
+      }
+
+      .contact-btn {
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+    .goTop {
+      position: fixed;
+      bottom: 0;
+      right: 0;
     }
   }
 }
